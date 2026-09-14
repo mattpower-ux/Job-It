@@ -120,7 +120,7 @@ h2 {
   flex-direction: column;
   gap: 12px;
   background: var(--paper);
-  border: 1px solid var(--line);
+  border: 2px solid var(--blue);
   border-radius: 22px;
   padding: 18px;
   box-shadow: 0 12px 28px rgba(8, 50, 85, 0.11);
