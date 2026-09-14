@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Job-It Contractor Calculator Prototype</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="portal-header">
+      <div>
+        <p class="eyebrow">Job-It field toolkit</p>
+        <h1>Residential contractor calculators</h1>
+      </div>
+      <p class="header-note">
+        Six dense, jobsite-ready calculators for layout, estimating, geometry,
+        and quick field decisions. Each panel can be expanded into mobile mode.
+      </p>
+    </header>
+
+    <main class="calculator-grid" id="calculatorGrid">
+      <section class="calculator" data-calculator="concrete">
+        <div class="card-top">
+          <div>
+            <p class="kicker">01 / concrete</p>
+            <h2>Concrete & Foundation</h2>
+          </div>
+          <button class="mobile-toggle" type="button" data-mobile-toggle>Mobile</button>
+        </div>
+        <div class="form-grid">
+          <label>
+            Shape
+            <select id="concreteShape">
+              <option value="slab">Slab / pad</option>
+              <option value="footing">Continuous footing</option>
+              <option value="wall">Stem wall</option>
+              <option value="pier">Round pier / sonotube</option>
+            </select>
+          </label>
+          <label>
+            Length
+            <div class="input-row"><input id="concreteLength" type="number" value="32" min="0" step="0.01" /><span>ft</span></div>
+          </label>
+          <label>
+            Width / diameter
+            <div class="input-row"><input id="concreteWidth" type="number" value="18" min="0" step="0.01" /><span>in</span></div>
+          </label>
+          <label>
+            Thickness / depth
+            <div class="input-row"><input id="concreteDepth" type="number" value="8" min="0" step="0.01" /><span>in</span></div>
+          </label>
+          <label>
+            Quantity
+            <input id="concreteQty" type="number" value="1" min="1" step="1" />
+          </label>
+          <label>
+            Waste
+            <div class="input-row"><input id="concreteWaste" type="number" value="8" min="0" step="1" /><span>%</span></div>
+          </label>
+        </div>
+        <div class="output-stack">
+          <div class="metric primary"><span>Cubic yards</span><strong id="concreteYards">0.00</strong></div>
+          <div class="metric"><span>80 lb bags</span><strong id="concreteBags">0</strong></div>
+          <div class="metric"><span>Spec note</span><strong id="concreteNote">Verify PSI from plans</strong></div>
+        </div>
+        <div class="mini-visual concrete-visual" aria-hidden="true"><span></span></div>
+      </section>
+
+      <section class="calculator" data-calculator="roof">
+        <div class="card-top">
+          <div>
+            <p class="kicker">02 / framing</p>
+            <h2>Roof & Rafter Geometry</h2>
+          </div>
+          <button class="mobile-toggle" type="button" data-mobile-toggle>Mobile</button>
+        </div>
+        <div class="form-grid">
+          <label>
+            Span
+            <div class="input-row"><input id="roofSpan" type="number" value="28" min="0" step="0.01" /><span>ft</span></div>
+          </label>
+          <label>
+            Pitch
+            <div class="input-row"><input id="roofPitch" type="number" value="6" min="0" step="0.25" /><span>:12</span></div>
+          </label>
+          <label>
+            Overhang
+            <div class="input-row"><input id="roofOverhang" type="number" value="18" min="0" step="0.25" /><span>in</span></div>
+          </label>
+          <label>
+            Rafter spacing
+            <div class="input-row"><input id="roofSpacing" type="number" value="16" min="1" step="1" /><span>in OC</span></div>
+          </label>
+        </div>
+        <div class="output-stack">
+          <div class="metric primary"><span>Common rafter</span><strong id="roofRafter">0' 0"</strong></div>
+          <div class="metric"><span>Roof angle</span><strong id="roofAngle">0.0 deg</strong></div>
+          <div class="metric"><span>Rafters per side</span><strong id="roofCount">0</strong></div>
+        </div>
+        <div class="roof-diagram" aria-hidden="true">
+          <div class="roof-line left"></div>
+          <div class="roof-line right"></div>
+          <span id="roofRiseLabel">rise</span>
+        </div>
+      </section>
+
+      <section class="calculator" data-calculator="trim">
+        <div class="card-top">
+          <div>
+            <p class="kicker">03 / finish</p>
+            <h2>Trim & Molding Cuts</h2>
+          </div>
+          <button class="mobile-toggle" type="button" data-mobile-toggle>Mobile</button>
+        </div>
+        <div class="form-grid">
+          <label>
+            Profile
+            <select id="trimProfile">
+              <option value="crown">Crown molding</option>
+              <option value="base">Baseboard / casing</option>
+              <option value="chair">Chair rail</option>
+            </select>
+          </label>
+          <label>
+            Corner type
+            <select id="trimCorner">
+              <option value="inside">Inside</option>
+              <option value="outside">Outside</option>
+            </select>
+          </label>
+          <label>
+            Wall angle
+            <div class="input-row"><input id="trimWallAngle" type="number" value="90" min="1" max="179" step="0.1" /><span>deg</span></div>
+          </label>
+          <label>
+            Crown spring
+            <div class="input-row"><input id="trimSpring" type="number" value="38" min="1" max="89" step="0.1" /><span>deg</span></div>
+          </label>
+        </div>
+        <div class="output-stack">
+          <div class="metric primary"><span>Saw miter</span><strong id="trimMiter">0.0 deg</strong></div>
+          <div class="metric"><span>Saw bevel</span><strong id="trimBevel">0.0 deg</strong></div>
+          <div class="metric"><span>Orientation</span><strong id="trimNote">Nested or flat</strong></div>
+        </div>
+        <div class="saw-visual" aria-hidden="true">
+          <div class="fence"></div>
+          <div class="blade" id="trimBlade"></div>
+          <div class="molding"></div>
+        </div>
+      </section>
+
+      <section class="calculator" data-calculator="stairs">
+        <div class="card-top">
+          <div>
+            <p class="kicker">04 / access</p>
+            <h2>Stairs, Ramps & Decks</h2>
+          </div>
+          <button class="mobile-toggle" type="button" data-mobile-toggle>Mobile</button>
+        </div>
+        <div class="form-grid">
+          <label>
+            Total rise
+            <div class="input-row"><input id="stairRise" type="number" value="108" min="1" step="0.125" /><span>in</span></div>
+          </label>
+          <label>
+            Target riser
+            <div class="input-row"><input id="stairTargetRiser" type="number" value="7.5" min="1" step="0.125" /><span>in</span></div>
+          </label>
+          <label>
+            Tread depth
+            <div class="input-row"><input id="stairTread" type="number" value="10.5" min="1" step="0.125" /><span>in</span></div>
+          </label>
+          <label>
+            Stringer count
+            <input id="stairStringers" type="number" value="3" min="1" step="1" />
+          </label>
+        </div>
+        <div class="output-stack">
+          <div class="metric primary"><span>Risers</span><strong id="stairRisers">0</strong></div>
+          <div class="metric"><span>Actual riser</span><strong id="stairActual">0"</strong></div>
+          <div class="metric"><span>Stringer length</span><strong id="stairStringerLength">0' 0"</strong></div>
+        </div>
+        <div class="stair-visual" id="stairVisual" aria-hidden="true"></div>
+      </section>
+
+      <section class="calculator" data-calculator="takeoff">
+        <div class="card-top">
+          <div>
+            <p class="kicker">05 / takeoff</p>
+            <h2>Material Takeoff</h2>
+          </div>
+          <button class="mobile-toggle" type="button" data-mobile-toggle>Mobile</button>
+        </div>
+        <div class="form-grid">
+          <label>
+            Category
+            <select id="takeoffCategory">
+              <option value="wall">Wall framing</option>
+              <option value="drywall">Drywall sheets</option>
+              <option value="roofing">Roofing squares</option>
+            </select>
+          </label>
+          <label>
+            Length
+            <div class="input-row"><input id="takeoffLength" type="number" value="40" min="0" step="0.01" /><span>ft</span></div>
+          </label>
+          <label>
+            Height / width
+            <div class="input-row"><input id="takeoffHeight" type="number" value="9" min="0" step="0.01" /><span>ft</span></div>
+          </label>
+          <label>
+            Spacing / waste
+            <div class="input-row"><input id="takeoffSpacing" type="number" value="16" min="1" step="1" /><span id="takeoffUnit">in OC</span></div>
+          </label>
+          <label>
+            Openings
+            <input id="takeoffOpenings" type="number" value="2" min="0" step="1" />
+          </label>
+          <label>
+            Waste
+            <div class="input-row"><input id="takeoffWaste" type="number" value="10" min="0" step="1" /><span>%</span></div>
+          </label>
+        </div>
+        <div class="output-stack">
+          <div class="metric primary"><span>Main quantity</span><strong id="takeoffMain">0</strong></div>
+          <div class="metric"><span>Secondary</span><strong id="takeoffSecondary">0</strong></div>
+          <div class="metric"><span>Area</span><strong id="takeoffArea">0 sq ft</strong></div>
+        </div>
+        <div class="takeoff-bars" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+      </section>
+
+      <section class="calculator" data-calculator="layout">
+        <div class="card-top">
+          <div>
+            <p class="kicker">06 / layout</p>
+            <h2>Layout, Level & Squaring</h2>
+          </div>
+          <button class="mobile-toggle" type="button" data-mobile-toggle>Mobile</button>
+        </div>
+        <div class="form-grid">
+          <label>
+            Mode
+            <select id="layoutMode">
+              <option value="square">Square a rectangle</option>
+              <option value="slope">Slope / drainage fall</option>
+              <option value="spacing">Equal spacing</option>
+            </select>
+          </label>
+          <label>
+            Length / run
+            <div class="input-row"><input id="layoutA" type="number" value="31.625" min="0" step="0.001" /><span>ft</span></div>
+          </label>
+          <label>
+            Width / fall
+            <div class="input-row"><input id="layoutB" type="number" value="24" min="0" step="0.001" /><span id="layoutBUnit">ft</span></div>
+          </label>
+          <label>
+            Count / pitch
+            <div class="input-row"><input id="layoutC" type="number" value="16" min="0" step="0.001" /><span id="layoutCUnit">in</span></div>
+          </label>
+        </div>
+        <div class="output-stack">
+          <div class="metric primary"><span>Primary result</span><strong id="layoutMain">0</strong></div>
+          <div class="metric"><span>Secondary</span><strong id="layoutSecondary">0</strong></div>
+          <div class="metric"><span>Field cue</span><strong id="layoutCue">Measure twice</strong></div>
+        </div>
+        <div class="layout-visual" aria-hidden="true">
+          <div class="layout-box"></div>
+          <div class="layout-diagonal"></div>
+        </div>
+      </section>
+    </main>
+
+    <div class="mobile-scrim" id="mobileScrim" hidden></div>
+    <script src="app.js"></script>
+  </body>
+</html>
