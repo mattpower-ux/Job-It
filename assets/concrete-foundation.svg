@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 150" role="img" aria-labelledby="title desc">
+  <title id="title">Concrete foundation illustration</title>
+  <desc id="desc">A stylized concrete slab, rebar, pier forms, and pouring chute.</desc>
+  <defs>
+    <linearGradient id="slab" x1="44" y1="48" x2="206" y2="128" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#dff3f6"/>
+      <stop offset="1" stop-color="#7fc7d1"/>
+    </linearGradient>
+    <linearGradient id="shadow" x1="58" y1="104" x2="212" y2="137" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#006b86" stop-opacity=".22"/>
+      <stop offset="1" stop-color="#003d5c" stop-opacity=".02"/>
+    </linearGradient>
+  </defs>
+  <rect width="260" height="150" rx="28" fill="#eaf8fb" opacity=".16"/>
+  <path d="M35 105 174 105 224 130 82 130Z" fill="url(#shadow)"/>
+  <path d="M45 72 183 72 219 105 78 105Z" fill="url(#slab)" stroke="#ffffff" stroke-width="4"/>
+  <path d="M78 105 219 105 209 124 68 124Z" fill="#4aa7b4" opacity=".7"/>
+  <path d="M45 72 78 105 68 124 35 90Z" fill="#116d83" opacity=".72"/>
+  <path d="M70 84h119M91 71l35 34M130 71l35 34" stroke="#007d94" stroke-width="3" opacity=".52"/>
+  <path d="M33 48h54l-11 25H22Z" fill="#ffffff" opacity=".92"/>
+  <path d="M33 48 52 29h55L87 48Z" fill="#d8edf5"/>
+  <path d="M22 73 33 48 52 29" fill="none" stroke="#ffffff" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M185 49c15 0 27 12 27 27v27h-54V76c0-15 12-27 27-27Z" fill="#dce8ee" stroke="#ffffff" stroke-width="4"/>
+  <path d="M168 91h34M168 78h34" stroke="#7d96a8" stroke-width="3" opacity=".65"/>
+  <circle cx="211" cy="52" r="17" fill="#f6c24f"/>
+  <path d="M204 53h14M211 46v14" stroke="#08304e" stroke-width="4" stroke-linecap="round"/>
+</svg>

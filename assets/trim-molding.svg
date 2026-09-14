@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 150" role="img" aria-labelledby="title desc">
+  <title id="title">Trim and molding illustration</title>
+  <desc id="desc">A compound miter saw cutting crown molding with finished profile pieces.</desc>
+  <defs>
+    <linearGradient id="trimBg" x1="28" y1="22" x2="232" y2="130" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff0f6"/>
+      <stop offset="1" stop-color="#ffc0cd"/>
+    </linearGradient>
+  </defs>
+  <rect width="260" height="150" rx="28" fill="url(#trimBg)" opacity=".22"/>
+  <path d="M36 92h189" stroke="#ffffff" stroke-width="9" stroke-linecap="round"/>
+  <path d="M56 88 174 73l6 27L62 115Z" fill="#f4d6e8" stroke="#ffffff" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M55 86 174 70M62 115l118-15" stroke="#7b326c" stroke-width="4" stroke-linecap="round"/>
+  <path d="M117 119 166 32" stroke="#ffffff" stroke-width="8" stroke-linecap="round"/>
+  <path d="M117 119 166 32" stroke="#d84c64" stroke-width="4" stroke-linecap="round"/>
+  <path d="M61 46h84l-14 22H47Z" fill="#ffffff"/>
+  <path d="M53 46h92M47 68h83" stroke="#7b326c" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="196" cy="65" r="31" fill="#ffffff" opacity=".24"/>
+  <path d="M181 65h29M196 50v30" stroke="#ffffff" stroke-width="5" stroke-linecap="round"/>
+  <path d="M207 106c11 3 20 12 23 23" fill="none" stroke="#f4c24d" stroke-width="5" stroke-linecap="round"/>
+  <path d="M215 112 207 106l10-5" fill="#f4c24d"/>
+</svg>

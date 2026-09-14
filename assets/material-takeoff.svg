@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 150" role="img" aria-labelledby="title desc">
+  <title id="title">Material takeoff illustration</title>
+  <desc id="desc">A clipboard, lumber stack, sheathing sheet, and count marks.</desc>
+  <defs>
+    <linearGradient id="takeoffBg" x1="29" y1="22" x2="229" y2="129" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff2d0"/>
+      <stop offset="1" stop-color="#f3b224"/>
+    </linearGradient>
+  </defs>
+  <rect width="260" height="150" rx="28" fill="url(#takeoffBg)" opacity=".2"/>
+  <rect x="69" y="29" width="91" height="101" rx="7" fill="#fff7e0" stroke="#ffffff" stroke-width="5"/>
+  <path d="M92 29h45v16H92Z" fill="#ffffff"/>
+  <path d="M89 64h48M89 82h48M89 100h34" stroke="#a86106" stroke-width="5" stroke-linecap="round"/>
+  <path d="m148 62 9 9 20-24" fill="none" stroke="#28a05d" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M32 111h88M39 96h88M46 81h88" stroke="#ffffff" stroke-width="9" stroke-linecap="round"/>
+  <path d="M32 111h88M39 96h88M46 81h88" stroke="#8b5108" stroke-width="4" stroke-linecap="round"/>
+  <path d="M171 76h52v43h-52Z" fill="#ffe4a1" stroke="#ffffff" stroke-width="5"/>
+  <path d="M179 85h36M179 98h36M179 111h36" stroke="#b4700a" stroke-width="3"/>
+  <circle cx="202" cy="43" r="22" fill="#ffffff" opacity=".3"/>
+  <path d="M193 43h18M202 34v18" stroke="#ffffff" stroke-width="5" stroke-linecap="round"/>
+</svg>

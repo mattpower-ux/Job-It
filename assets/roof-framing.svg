@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 150" role="img" aria-labelledby="title desc">
+  <title id="title">Roof framing illustration</title>
+  <desc id="desc">A framed gable roof with rafters, ridge board, and measurement marks.</desc>
+  <defs>
+    <linearGradient id="roofSky" x1="30" y1="18" x2="228" y2="137" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#eff6ff"/>
+      <stop offset="1" stop-color="#9db6ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="260" height="150" rx="28" fill="url(#roofSky)" opacity=".2"/>
+  <path d="M38 115h185" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
+  <path d="M45 109 130 45 215 109" fill="#dbe7ff" stroke="#ffffff" stroke-width="7" stroke-linejoin="round"/>
+  <path d="M61 109 130 58 199 109" fill="none" stroke="#244e9a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M130 47v66M85 92l45-34 45 34M107 76v37M153 75v38" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+  <path d="M130 58h31" stroke="#f5c84c" stroke-width="5" stroke-linecap="round"/>
+  <path d="M151 54 162 58 151 63" fill="#f5c84c"/>
+  <path d="M66 121h128" stroke="#0a2c54" stroke-width="5" stroke-linecap="round" opacity=".34"/>
+  <rect x="32" y="102" width="31" height="16" rx="4" fill="#0a2c54" opacity=".72"/>
+  <rect x="197" y="102" width="31" height="16" rx="4" fill="#0a2c54" opacity=".72"/>
+  <circle cx="130" cy="58" r="7" fill="#ffffff"/>
+  <circle cx="130" cy="58" r="3" fill="#244e9a"/>
+</svg>
