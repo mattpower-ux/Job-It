@@ -14,6 +14,7 @@ const calculatorMeta = {
 
 let deferredInstallPrompt = null;
 let openedFromShortcut = false;
+let lastLayoutMode = null;
 const defaultTitle = document.title;
 
 function setShortcutIdentity(calculatorId) {
@@ -128,6 +129,9 @@ function updateStairs() {
   $("stairRisers").textContent = `${risers} risers / ${treads} treads`;
   $("stairActual").textContent = `${round(actualRiser, 2)}"`;
   $("stairStringerLength").textContent = `${inchesToFeetAndInches(stringerLength)} x ${stringers}`;
+  const comfortRule = actualRiser * 2 + tread;
+  const stairOk = actualRiser <= 7.75 && tread >= 10 && comfortRule >= 24 && comfortRule <= 25;
+  $("stairRule").textContent = `${round(comfortRule, 2)}" ${stairOk ? "OK" : "check"}`;
 
   const visual = $("stairVisual");
   visual.innerHTML = "";
@@ -176,22 +180,46 @@ function updateTakeoff() {
 
 function updateLayout() {
   const mode = $("layoutMode").value;
+  if (mode !== lastLayoutMode) {
+    if (mode === "square") {
+      $("layoutA").value = "31.625";
+      $("layoutB").value = "24";
+      $("layoutC").value = "39.7";
+    } else if (mode === "slope") {
+      $("layoutA").value = "27";
+      $("layoutB").value = "0";
+      $("layoutC").value = "0.25";
+    } else {
+      $("layoutA").value = "10";
+      $("layoutB").value = "0";
+      $("layoutC").value = "8";
+    }
+    lastLayoutMode = mode;
+  }
+
   const a = numeric("layoutA");
   const b = numeric("layoutB");
   const c = numeric("layoutC");
 
   if (mode === "square") {
     const diagonal = Math.hypot(a, b);
+    const deltaIn = (c - diagonal) * 12;
     $("layoutMain").textContent = `${round(diagonal, 3)} ft diagonal`;
-    $("layoutSecondary").textContent = inchesToFeetAndInches(diagonal * 12);
-    $("layoutCue").textContent = "Match both diagonals";
+    $("layoutSecondary").textContent = `${Math.abs(round(deltaIn, 2))}" ${deltaIn >= 0 ? "long" : "short"}`;
+    $("layoutCue").textContent = Math.abs(deltaIn) <= 0.125 ? "Square within 1/8 in" : "Move a corner, recheck";
+    $("layoutALabel").textContent = "Length";
+    $("layoutBLabel").textContent = "Width";
+    $("layoutCLabel").textContent = "Measured diagonal";
     $("layoutBUnit").textContent = "ft";
-    $("layoutCUnit").textContent = "in";
+    $("layoutCUnit").textContent = "ft";
   } else if (mode === "slope") {
     const fallIn = a * c;
     $("layoutMain").textContent = `${round(fallIn, 2)} in fall`;
     $("layoutSecondary").textContent = `${round((fallIn / 12) * 100 / a, 2)}% grade`;
     $("layoutCue").textContent = "Lower endpoint by result";
+    $("layoutALabel").textContent = "Drain run";
+    $("layoutBLabel").textContent = "Unused";
+    $("layoutCLabel").textContent = "Pitch";
     $("layoutBUnit").textContent = "unused";
     $("layoutCUnit").textContent = "in/ft";
   } else {
@@ -200,6 +228,9 @@ function updateLayout() {
     $("layoutMain").textContent = `${round(spacingIn, 2)} in centers`;
     $("layoutSecondary").textContent = `${spaces + 1} marks incl. ends`;
     $("layoutCue").textContent = "Mark from same end";
+    $("layoutALabel").textContent = "Opening length";
+    $("layoutBLabel").textContent = "Unused";
+    $("layoutCLabel").textContent = "Spaces";
     $("layoutBUnit").textContent = "unused";
     $("layoutCUnit").textContent = "spaces";
   }

@@ -26,6 +26,7 @@
           <div>
             <p class="kicker">01 / concrete</p>
             <h2>Concrete & Foundation</h2>
+            <p class="field-question">How many yards do we order?</p>
           </div>
           <button class="mobile-toggle" type="button" data-mobile-toggle>Mobile</button>
         </div>
@@ -65,7 +66,7 @@
           </label>
         </div>
         <div class="output-stack">
-          <div class="metric primary"><span>Cubic yards</span><strong id="concreteYards">0.00</strong></div>
+          <div class="metric primary"><span>Order yards</span><strong id="concreteYards">0.00</strong></div>
           <div class="metric"><span>80 lb bags</span><strong id="concreteBags">0</strong></div>
           <div class="metric"><span>Spec note</span><strong id="concreteNote">Verify PSI from plans</strong></div>
         </div>
@@ -77,6 +78,7 @@
           <div>
             <p class="kicker">02 / framing</p>
             <h2>Roof & Rafter Geometry</h2>
+            <p class="field-question">What length and saw angle do I cut?</p>
           </div>
           <button class="mobile-toggle" type="button" data-mobile-toggle>Mobile</button>
         </div>
@@ -104,7 +106,7 @@
         </div>
         <div class="output-stack">
           <div class="metric primary"><span>Common rafter</span><strong id="roofRafter">0' 0"</strong></div>
-          <div class="metric"><span>Roof angle</span><strong id="roofAngle">0.0 deg</strong></div>
+          <div class="metric"><span>Plumb cut / pitch</span><strong id="roofAngle">0.0 deg</strong></div>
           <div class="metric"><span>Rafters per side</span><strong id="roofCount">0</strong></div>
         </div>
         <div class="roof-diagram" aria-hidden="true">
@@ -119,6 +121,7 @@
           <div>
             <p class="kicker">03 / finish</p>
             <h2>Trim & Molding Cuts</h2>
+            <p class="field-question">What miter and bevel fit this corner?</p>
           </div>
           <button class="mobile-toggle" type="button" data-mobile-toggle>Mobile</button>
         </div>
@@ -168,6 +171,7 @@
           <div>
             <p class="kicker">04 / access</p>
             <h2>Stairs, Ramps & Decks</h2>
+            <p class="field-question">How many risers, and is the step comfortable?</p>
           </div>
           <button class="mobile-toggle" type="button" data-mobile-toggle>Mobile</button>
         </div>
@@ -197,6 +201,7 @@
           <div class="metric primary"><span>Risers</span><strong id="stairRisers">0</strong></div>
           <div class="metric"><span>Actual riser</span><strong id="stairActual">0"</strong></div>
           <div class="metric"><span>Stringer length</span><strong id="stairStringerLength">0' 0"</strong></div>
+          <div class="metric"><span>2R + T check</span><strong id="stairRule">0"</strong></div>
         </div>
         <div class="stair-visual" id="stairVisual" aria-hidden="true"></div>
       </section>
@@ -206,6 +211,7 @@
           <div>
             <p class="kicker">05 / takeoff</p>
             <h2>Material Takeoff</h2>
+            <p class="field-question">What should I buy, with waste included?</p>
           </div>
           <button class="mobile-toggle" type="button" data-mobile-toggle>Mobile</button>
         </div>
@@ -244,8 +250,8 @@
           </label>
         </div>
         <div class="output-stack">
-          <div class="metric primary"><span>Main quantity</span><strong id="takeoffMain">0</strong></div>
-          <div class="metric"><span>Secondary</span><strong id="takeoffSecondary">0</strong></div>
+          <div class="metric primary"><span>Buy quantity</span><strong id="takeoffMain">0</strong></div>
+          <div class="metric"><span>Also order</span><strong id="takeoffSecondary">0</strong></div>
           <div class="metric"><span>Area</span><strong id="takeoffArea">0 sq ft</strong></div>
         </div>
         <div class="takeoff-bars" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
@@ -256,6 +262,7 @@
           <div>
             <p class="kicker">06 / layout</p>
             <h2>Layout, Level & Squaring</h2>
+            <p class="field-question">Is it square, sloped, or spaced correctly?</p>
           </div>
           <button class="mobile-toggle" type="button" data-mobile-toggle>Mobile</button>
         </div>
@@ -269,25 +276,25 @@
             <select id="layoutMode">
               <option value="square">Square a rectangle</option>
               <option value="slope">Slope / drainage fall</option>
-              <option value="spacing">Equal spacing</option>
+              <option value="spacing">Baluster / equal spacing</option>
             </select>
           </label>
           <label>
-            Length / run
+            <span id="layoutALabel">Length / run</span>
             <div class="input-row"><input id="layoutA" type="number" value="31.625" min="0" step="0.001" /><span>ft</span></div>
           </label>
           <label>
-            Width / fall
+            <span id="layoutBLabel">Width / fall</span>
             <div class="input-row"><input id="layoutB" type="number" value="24" min="0" step="0.001" /><span id="layoutBUnit">ft</span></div>
           </label>
           <label>
-            Count / pitch
-            <div class="input-row"><input id="layoutC" type="number" value="16" min="0" step="0.001" /><span id="layoutCUnit">in</span></div>
+            <span id="layoutCLabel">Measured diag / pitch</span>
+            <div class="input-row"><input id="layoutC" type="number" value="39.7" min="0" step="0.001" /><span id="layoutCUnit">ft</span></div>
           </label>
         </div>
         <div class="output-stack">
-          <div class="metric primary"><span>Primary result</span><strong id="layoutMain">0</strong></div>
-          <div class="metric"><span>Secondary</span><strong id="layoutSecondary">0</strong></div>
+          <div class="metric primary"><span>Answer</span><strong id="layoutMain">0</strong></div>
+          <div class="metric"><span>Check</span><strong id="layoutSecondary">0</strong></div>
           <div class="metric"><span>Field cue</span><strong id="layoutCue">Measure twice</strong></div>
         </div>
         <div class="layout-visual" aria-hidden="true">

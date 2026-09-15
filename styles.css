@@ -85,9 +85,17 @@ h1 {
 }
 
 h2 {
-  font-size: 1.05rem;
-  line-height: 1.1;
+  font-size: 1.24rem;
+  line-height: 1.12;
   font-weight: 900;
+}
+
+.field-question {
+  margin: 5px 0 0;
+  color: var(--text);
+  font-size: 0.92rem;
+  line-height: 1.25;
+  font-weight: 800;
 }
 
 .header-note {
@@ -586,7 +594,12 @@ select:focus {
 }
 
 .calculator.expanded-mode h2 {
-  font-size: 1.22rem;
+  font-size: 1.44rem;
+  line-height: 1.1;
+}
+
+.calculator.expanded-mode .field-question {
+  font-size: 1rem;
 }
 
 .calculator.expanded-mode .kicker {
