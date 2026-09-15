@@ -61,7 +61,7 @@ select {
 }
 
 .eyebrow {
-  color: var(--gold);
+  color: var(--blue);
 }
 
 .kicker {
@@ -550,7 +550,7 @@ select:focus {
   top: 50%;
   left: 50%;
   width: min(390px, calc(100vw - 24px));
-  height: min(844px, calc(100dvh - 24px));
+  height: min(720px, calc(100dvh - 24px));
   margin: 0;
   border-radius: 24px;
   overflow-y: auto;
