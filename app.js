@@ -279,8 +279,44 @@ function shortcutInstructions(calculatorId) {
   ].join("\n");
 }
 
+function confirmInstallShortcut(calculatorId) {
+  const meta = calculatorMeta[calculatorId];
+  return new Promise((resolve) => {
+    const dialog = document.createElement("div");
+    dialog.className = "install-dialog";
+    dialog.setAttribute("role", "dialog");
+    dialog.setAttribute("aria-modal", "true");
+    dialog.innerHTML = `
+      <div class="install-dialog-panel">
+        <h3>JOB-IT ${meta.label}</h3>
+        <p>Add this calculator to your phone home screen as its own shortcut.</p>
+        <div class="install-dialog-actions">
+          <button class="install-confirm" type="button">Install shortcut on your phone?</button>
+          <button class="install-cancel" type="button">Cancel</button>
+        </div>
+      </div>
+    `;
+
+    const finish = (answer) => {
+      dialog.remove();
+      resolve(answer);
+    };
+
+    dialog.querySelector(".install-confirm").addEventListener("click", () => finish(true));
+    dialog.querySelector(".install-cancel").addEventListener("click", () => finish(false));
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) finish(false);
+    });
+    document.body.appendChild(dialog);
+    dialog.querySelector(".install-confirm").focus();
+  });
+}
+
 async function createMobileShortcut(calculatorId) {
   const meta = calculatorMeta[calculatorId];
+  const confirmed = await confirmInstallShortcut(calculatorId);
+  if (!confirmed) return;
+
   if (deferredInstallPrompt) {
     deferredInstallPrompt.prompt();
     await deferredInstallPrompt.userChoice;

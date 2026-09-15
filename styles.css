@@ -547,15 +547,17 @@ select:focus {
 .calculator.expanded-mode {
   position: fixed;
   z-index: 30;
-  inset: 0;
-  width: min(430px, 100vw);
-  height: 100dvh;
-  margin: 0 auto;
-  border-radius: 0;
+  top: 50%;
+  left: 50%;
+  width: min(390px, calc(100vw - 24px));
+  height: min(844px, calc(100dvh - 24px));
+  margin: 0;
+  border-radius: 24px;
   overflow-y: auto;
   padding: 18px;
   cursor: default;
   box-shadow: 0 20px 70px rgba(0, 0, 0, 0.32);
+  transform: translate(-50%, -50%);
 }
 
 .calculator.expanded-mode::after {
@@ -592,21 +594,22 @@ select:focus {
 }
 
 .calculator.expanded-mode .calc-banner {
-  min-height: 116px;
-  grid-template-columns: 1fr 140px;
+  min-height: 98px;
+  grid-template-columns: 1fr 126px;
 }
 
 .calculator.expanded-mode .banner-art {
-  width: 144px;
-  height: 98px;
+  width: 128px;
+  height: 86px;
 }
 
 .calculator.expanded-mode .form-grid {
   grid-template-columns: 1fr;
+  gap: 8px;
 }
 
 .calculator.expanded-mode .metric {
-  min-height: 56px;
+  min-height: 50px;
 }
 
 .calculator.expanded-mode .expanded-actions {
@@ -653,6 +656,66 @@ select:focus {
   background: var(--blue-dark);
 }
 
+.install-dialog {
+  position: fixed;
+  z-index: 40;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: rgba(0, 30, 54, 0.42);
+}
+
+.install-dialog-panel {
+  width: min(360px, 100%);
+  display: grid;
+  gap: 12px;
+  padding: 18px;
+  border-radius: 20px;
+  background: #fff;
+  border: 2px solid var(--blue);
+  box-shadow: 0 22px 64px rgba(0, 22, 48, 0.34);
+}
+
+.install-dialog-panel h3 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 1.12rem;
+  line-height: 1.15;
+}
+
+.install-dialog-panel p {
+  margin: 0;
+  color: var(--text);
+  line-height: 1.35;
+  font-size: 0.92rem;
+}
+
+.install-dialog-actions {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+}
+
+.install-confirm,
+.install-cancel {
+  min-height: 44px;
+  border-radius: 12px;
+  font-weight: 900;
+}
+
+.install-confirm {
+  border: 0;
+  color: #fff;
+  background: var(--blue);
+}
+
+.install-cancel {
+  border: 1px solid var(--line);
+  color: var(--ink);
+  background: #fff;
+}
+
 .calculator.expanded-mode .mobile-toggle {
   background: var(--blue-dark);
   text-transform: uppercase;
@@ -684,10 +747,14 @@ body.shortcut-launch .calculator-grid {
 
 body.shortcut-launch .calculator.expanded-mode {
   position: relative;
-  width: min(430px, 100vw);
+  top: auto;
+  left: auto;
+  width: min(390px, 100vw);
   min-height: 100vh;
   height: auto;
   margin: 0 auto;
+  border-radius: 0;
+  transform: none;
 }
 
 body.shortcut-launch .calculator.expanded-mode .expanded-actions {
@@ -733,6 +800,11 @@ body.shortcut-launch .mobile-scrim {
 
   .calculator.expanded-mode {
     width: 100vw;
+    height: 100dvh;
+    top: 0;
+    left: 0;
+    border-radius: 0;
+    transform: none;
   }
 
   .calc-banner {
