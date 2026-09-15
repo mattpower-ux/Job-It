@@ -1,22 +1,40 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 150" role="img" aria-labelledby="title desc">
-  <title id="title">Trim and molding illustration</title>
-  <desc id="desc">A compound miter saw cutting crown molding with finished profile pieces.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 170" role="img" aria-labelledby="title desc">
+  <title id="title">Trim and molding calculator illustration</title>
+  <desc id="desc">A realistic finish carpentry scene with crown molding, compound miter saw, wall corner, and measured cut angle.</desc>
   <defs>
-    <linearGradient id="trimBg" x1="28" y1="22" x2="232" y2="130" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#fff0f6"/>
-      <stop offset="1" stop-color="#ffc0cd"/>
+    <linearGradient id="trimBg" x1="0" y1="0" x2="300" y2="170" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff2f7"/>
+      <stop offset="1" stop-color="#f3a9bb"/>
     </linearGradient>
+    <linearGradient id="molding" x1="47" y1="83" x2="228" y2="119" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff8ef"/>
+      <stop offset=".5" stop-color="#f5d8c9"/>
+      <stop offset="1" stop-color="#b98594"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="10" stdDeviation="8" flood-color="#4b123e" flood-opacity=".24"/>
+    </filter>
   </defs>
-  <rect width="260" height="150" rx="28" fill="url(#trimBg)" opacity=".22"/>
-  <path d="M36 92h189" stroke="#ffffff" stroke-width="9" stroke-linecap="round"/>
-  <path d="M56 88 174 73l6 27L62 115Z" fill="#f4d6e8" stroke="#ffffff" stroke-width="5" stroke-linejoin="round"/>
-  <path d="M55 86 174 70M62 115l118-15" stroke="#7b326c" stroke-width="4" stroke-linecap="round"/>
-  <path d="M117 119 166 32" stroke="#ffffff" stroke-width="8" stroke-linecap="round"/>
-  <path d="M117 119 166 32" stroke="#d84c64" stroke-width="4" stroke-linecap="round"/>
-  <path d="M61 46h84l-14 22H47Z" fill="#ffffff"/>
-  <path d="M53 46h92M47 68h83" stroke="#7b326c" stroke-width="4" stroke-linecap="round"/>
-  <circle cx="196" cy="65" r="31" fill="#ffffff" opacity=".24"/>
-  <path d="M181 65h29M196 50v30" stroke="#ffffff" stroke-width="5" stroke-linecap="round"/>
-  <path d="M207 106c11 3 20 12 23 23" fill="none" stroke="#f4c24d" stroke-width="5" stroke-linecap="round"/>
-  <path d="M215 112 207 106l10-5" fill="#f4c24d"/>
+  <rect width="300" height="170" rx="30" fill="url(#trimBg)" opacity=".34"/>
+  <path d="M43 49h84v67H43Z" fill="#fff8ef" opacity=".88"/>
+  <path d="M127 49h91v67h-91Z" fill="#f8dce3" opacity=".72"/>
+  <path d="M127 49v67" stroke="#c77b95" stroke-width="5"/>
+  <g filter="url(#shadow)">
+    <path d="M47 91 204 72l8 35-157 20Z" fill="url(#molding)" stroke="#ffffff" stroke-width="5"/>
+    <path d="M52 88 208 69M57 105l156-20M59 124l154-19" stroke="#8d3b78" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M118 130 168 35" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <path d="M118 130 168 35" stroke="#df5b68" stroke-width="5" stroke-linecap="round"/>
+  </g>
+  <g>
+    <ellipse cx="206" cy="82" rx="39" ry="31" fill="#ffffff" opacity=".35"/>
+    <circle cx="206" cy="82" r="20" fill="#ffffff" opacity=".5"/>
+    <path d="M193 82h26M206 69v26" stroke="#82366f" stroke-width="5" stroke-linecap="round"/>
+    <path d="M189 109c14 4 26 15 31 30" fill="none" stroke="#f7c64a" stroke-width="6" stroke-linecap="round"/>
+  </g>
+  <g>
+    <rect x="38" y="34" width="83" height="18" rx="6" fill="#ffffff"/>
+    <path d="M49 43h59" stroke="#884374" stroke-width="4" stroke-linecap="round"/>
+    <path d="M40 55c16 8 30 8 45 0s27-8 42 0" fill="none" stroke="#d09dac" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <path d="M223 112h33v16h-33Z" fill="#06304f" opacity=".55"/>
 </svg>

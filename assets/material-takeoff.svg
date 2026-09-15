@@ -1,21 +1,42 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 150" role="img" aria-labelledby="title desc">
-  <title id="title">Material takeoff illustration</title>
-  <desc id="desc">A clipboard, lumber stack, sheathing sheet, and count marks.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 170" role="img" aria-labelledby="title desc">
+  <title id="title">Material takeoff calculator illustration</title>
+  <desc id="desc">A material estimating scene with clipboard, lumber, drywall sheets, measuring tape, and checked quantities.</desc>
   <defs>
-    <linearGradient id="takeoffBg" x1="29" y1="22" x2="229" y2="129" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#fff2d0"/>
-      <stop offset="1" stop-color="#f3b224"/>
+    <linearGradient id="takeoffBg" x1="0" y1="0" x2="300" y2="170" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff4d3"/>
+      <stop offset="1" stop-color="#f2b019"/>
     </linearGradient>
+    <linearGradient id="sheet" x1="169" y1="63" x2="244" y2="126" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff4c4"/>
+      <stop offset="1" stop-color="#d99618"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="10" stdDeviation="8" flood-color="#4e2c00" flood-opacity=".22"/>
+    </filter>
   </defs>
-  <rect width="260" height="150" rx="28" fill="url(#takeoffBg)" opacity=".2"/>
-  <rect x="69" y="29" width="91" height="101" rx="7" fill="#fff7e0" stroke="#ffffff" stroke-width="5"/>
-  <path d="M92 29h45v16H92Z" fill="#ffffff"/>
-  <path d="M89 64h48M89 82h48M89 100h34" stroke="#a86106" stroke-width="5" stroke-linecap="round"/>
-  <path d="m148 62 9 9 20-24" fill="none" stroke="#28a05d" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M32 111h88M39 96h88M46 81h88" stroke="#ffffff" stroke-width="9" stroke-linecap="round"/>
-  <path d="M32 111h88M39 96h88M46 81h88" stroke="#8b5108" stroke-width="4" stroke-linecap="round"/>
-  <path d="M171 76h52v43h-52Z" fill="#ffe4a1" stroke="#ffffff" stroke-width="5"/>
-  <path d="M179 85h36M179 98h36M179 111h36" stroke="#b4700a" stroke-width="3"/>
-  <circle cx="202" cy="43" r="22" fill="#ffffff" opacity=".3"/>
-  <path d="M193 43h18M202 34v18" stroke="#ffffff" stroke-width="5" stroke-linecap="round"/>
+  <rect width="300" height="170" rx="30" fill="url(#takeoffBg)" opacity=".34"/>
+  <ellipse cx="150" cy="139" rx="112" ry="17" fill="#4e2c00" opacity=".17"/>
+  <g filter="url(#shadow)">
+    <rect x="74" y="25" width="94" height="111" rx="9" fill="#fff6df" stroke="#ffffff" stroke-width="5"/>
+    <rect x="98" y="20" width="47" height="22" rx="7" fill="#ffffff"/>
+    <path d="M94 61h45M94 81h45M94 101h34" stroke="#a35f07" stroke-width="5" stroke-linecap="round"/>
+    <path d="m145 58 10 10 24-28" fill="none" stroke="#239b56" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g>
+    <path d="M27 119h101M35 101h101M44 84h101" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+    <path d="M27 119h101M35 101h101M44 84h101" stroke="#9c5a08" stroke-width="5" stroke-linecap="round"/>
+    <path d="M51 78c24 5 45 5 71 0" fill="none" stroke="#e5a742" stroke-width="3" opacity=".8"/>
+  </g>
+  <g filter="url(#shadow)">
+    <path d="M177 70h67v52h-67Z" fill="url(#sheet)" stroke="#ffffff" stroke-width="5"/>
+    <path d="M187 82h44M187 98h44M187 114h28" stroke="#9c5a08" stroke-width="4" stroke-linecap="round"/>
+    <path d="M177 70 196 56h67l-19 14Z" fill="#ffe7a4" stroke="#ffffff" stroke-width="4"/>
+    <path d="M244 70 263 56v52l-19 14Z" fill="#c77b0c" opacity=".6"/>
+  </g>
+  <g>
+    <circle cx="218" cy="43" r="24" fill="#ffffff" opacity=".38"/>
+    <path d="M207 43h22M218 32v22" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
+    <path d="M39 40h52" stroke="#ffffff" stroke-width="9" stroke-linecap="round"/>
+    <path d="M39 40h52" stroke="#0a3152" stroke-width="4" stroke-linecap="round" opacity=".55"/>
+  </g>
 </svg>

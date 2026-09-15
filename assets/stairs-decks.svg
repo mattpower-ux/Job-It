@@ -1,22 +1,39 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 150" role="img" aria-labelledby="title desc">
-  <title id="title">Stairs and deck illustration</title>
-  <desc id="desc">A deck platform, posts, and stair stringer with stepped treads.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 170" role="img" aria-labelledby="title desc">
+  <title id="title">Stairs and deck calculator illustration</title>
+  <desc id="desc">A deck and stair stringer illustration with posts, treads, railing, and lumber texture.</desc>
   <defs>
-    <linearGradient id="stairBg" x1="30" y1="16" x2="231" y2="139" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#ecfff7"/>
-      <stop offset="1" stop-color="#8ee0b7"/>
+    <linearGradient id="deckBg" x1="0" y1="0" x2="300" y2="170" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#eafff7"/>
+      <stop offset="1" stop-color="#8adcb1"/>
     </linearGradient>
+    <linearGradient id="lumber" x1="33" y1="54" x2="241" y2="129" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#e2ad6d"/>
+      <stop offset=".55" stop-color="#b97937"/>
+      <stop offset="1" stop-color="#7d4a23"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="10" stdDeviation="8" flood-color="#003e35" flood-opacity=".22"/>
+    </filter>
   </defs>
-  <rect width="260" height="150" rx="28" fill="url(#stairBg)" opacity=".2"/>
-  <path d="M34 57h132v17H34Z" fill="#ffffff"/>
-  <path d="M48 74v48M143 74v48" stroke="#ffffff" stroke-width="8" stroke-linecap="round"/>
-  <path d="M34 57h132M34 74h132" stroke="#0d6b53" stroke-width="4" stroke-linecap="round"/>
-  <path d="M167 117h-32V99h-31V82H73" fill="none" stroke="#ffffff" stroke-width="13" stroke-linejoin="round"/>
-  <path d="M167 117h-32V99h-31V82H73" fill="none" stroke="#168057" stroke-width="5" stroke-linejoin="round"/>
-  <path d="M80 125h103" stroke="#0a3b36" stroke-width="6" stroke-linecap="round" opacity=".35"/>
-  <path d="M183 116 222 80" stroke="#ffffff" stroke-width="9" stroke-linecap="round"/>
-  <path d="M183 116 222 80" stroke="#f0b83c" stroke-width="4" stroke-linecap="round"/>
-  <circle cx="215" cy="69" r="21" fill="#ffffff" opacity=".24"/>
-  <path d="M205 69h20M215 59v20" stroke="#ffffff" stroke-width="5" stroke-linecap="round"/>
-  <path d="M51 47h94" stroke="#ffffff" stroke-width="6" stroke-linecap="round" opacity=".8"/>
+  <rect width="300" height="170" rx="30" fill="url(#deckBg)" opacity=".32"/>
+  <ellipse cx="150" cy="139" rx="112" ry="17" fill="#00372e" opacity=".17"/>
+  <g filter="url(#shadow)">
+    <path d="M31 57h153v22H31Z" fill="url(#lumber)"/>
+    <path d="M38 79v48M86 79v48M165 79v48" stroke="#8b5428" stroke-width="12" stroke-linecap="round"/>
+    <path d="M34 62h145M34 73h145" stroke="#ffd69c" stroke-width="3" opacity=".68"/>
+    <path d="M186 124h-38v-20h-37V85H73" fill="none" stroke="#f2c48a" stroke-width="22" stroke-linejoin="round"/>
+    <path d="M186 124h-38v-20h-37V85H73" fill="none" stroke="#8c5428" stroke-width="6" stroke-linejoin="round"/>
+    <path d="M75 85h38M111 104h38M148 124h38" stroke="#ffe2b5" stroke-width="6" stroke-linecap="round"/>
+  </g>
+  <g>
+    <path d="M58 43h101M61 27v47M103 27v47M145 27v47" stroke="#ffffff" stroke-width="8" stroke-linecap="round"/>
+    <path d="M58 43h101M61 27v47M103 27v47M145 27v47" stroke="#177153" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <g>
+    <path d="M185 118 239 72" stroke="#ffffff" stroke-width="11" stroke-linecap="round"/>
+    <path d="M185 118 239 72" stroke="#f0b63e" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="240" cy="67" r="22" fill="#ffffff" opacity=".36"/>
+    <path d="M230 67h20M240 57v20" stroke="#177153" stroke-width="5" stroke-linecap="round"/>
+  </g>
+  <path d="M57 130h142" stroke="#082f2c" stroke-width="7" stroke-linecap="round" opacity=".32"/>
 </svg>
