@@ -1,0 +1,56 @@
+{
+  "name": "JOB-IT Contractor Calculators",
+  "short_name": "JOB-IT",
+  "description": "Instant jobsite calculations from Green Builder Media.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f7fbfe",
+  "theme_color": "#052847",
+  "icons": [
+    {
+      "src": "assets/icons/job-it.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "JOB-IT Concrete",
+      "short_name": "Concrete",
+      "url": "./?calc=concrete&shortcut=1",
+      "icons": [{ "src": "assets/icons/concrete.svg", "sizes": "any", "type": "image/svg+xml" }]
+    },
+    {
+      "name": "JOB-IT Roof",
+      "short_name": "Roof",
+      "url": "./?calc=roof&shortcut=1",
+      "icons": [{ "src": "assets/icons/roof.svg", "sizes": "any", "type": "image/svg+xml" }]
+    },
+    {
+      "name": "JOB-IT Trim",
+      "short_name": "Trim",
+      "url": "./?calc=trim&shortcut=1",
+      "icons": [{ "src": "assets/icons/trim.svg", "sizes": "any", "type": "image/svg+xml" }]
+    },
+    {
+      "name": "JOB-IT Stairs",
+      "short_name": "Stairs",
+      "url": "./?calc=stairs&shortcut=1",
+      "icons": [{ "src": "assets/icons/stairs.svg", "sizes": "any", "type": "image/svg+xml" }]
+    },
+    {
+      "name": "JOB-IT Takeoff",
+      "short_name": "Takeoff",
+      "url": "./?calc=takeoff&shortcut=1",
+      "icons": [{ "src": "assets/icons/takeoff.svg", "sizes": "any", "type": "image/svg+xml" }]
+    },
+    {
+      "name": "JOB-IT Layout",
+      "short_name": "Layout",
+      "url": "./?calc=layout&shortcut=1",
+      "icons": [{ "src": "assets/icons/layout.svg", "sizes": "any", "type": "image/svg+xml" }]
+    }
+  ]
+}

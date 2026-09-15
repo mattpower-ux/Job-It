@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="112" fill="#052847"/>
+  <rect x="52" y="52" width="408" height="408" rx="86" fill="#9a416e"/>
+  <path d="M126 264 352 232l17 66-226 34Z" fill="#f5d8c9"/>
+  <path d="M219 346 303 162" stroke="#fff" stroke-width="28" stroke-linecap="round"/>
+  <path d="M219 346 303 162" stroke="#df5b68" stroke-width="12" stroke-linecap="round"/>
+  <text x="256" y="122" text-anchor="middle" font-family="Georgia,serif" font-size="58" font-weight="900" fill="#fff">JOB-IT</text>
+  <text x="256" y="415" text-anchor="middle" font-family="Arial,sans-serif" font-size="48" font-weight="900" fill="#fff">TRIM</text>
+</svg>

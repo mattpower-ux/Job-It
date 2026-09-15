@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="112" fill="#052847"/>
+  <rect x="52" y="52" width="408" height="408" rx="86" fill="#168057"/>
+  <path d="M372 342h-70v-48h-70v-48h-70v-48h-48" fill="none" stroke="#f2c48a" stroke-width="44" stroke-linejoin="round"/>
+  <path d="M372 342h-70v-48h-70v-48h-70v-48h-48" fill="none" stroke="#8c5428" stroke-width="16" stroke-linejoin="round"/>
+  <text x="256" y="122" text-anchor="middle" font-family="Georgia,serif" font-size="58" font-weight="900" fill="#fff">JOB-IT</text>
+  <text x="256" y="415" text-anchor="middle" font-family="Arial,sans-serif" font-size="48" font-weight="900" fill="#fff">STAIRS</text>
+</svg>

@@ -3,6 +3,39 @@ const numeric = (id) => Number($(id).value) || 0;
 const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
 const round = (value, places = 2) => Number(value).toFixed(places);
 
+const calculatorMeta = {
+  concrete: { label: "CONCRETE", title: "Concrete & Foundation", icon: "assets/icons/concrete.svg" },
+  roof: { label: "ROOF", title: "Roof & Rafter Geometry", icon: "assets/icons/roof.svg" },
+  trim: { label: "TRIM", title: "Trim & Molding Cuts", icon: "assets/icons/trim.svg" },
+  stairs: { label: "STAIRS", title: "Stairs, Ramps & Decks", icon: "assets/icons/stairs.svg" },
+  takeoff: { label: "TAKEOFF", title: "Material Takeoff", icon: "assets/icons/takeoff.svg" },
+  layout: { label: "LAYOUT", title: "Layout, Level & Squaring", icon: "assets/icons/layout.svg" }
+};
+
+let deferredInstallPrompt = null;
+let openedFromShortcut = false;
+const defaultTitle = document.title;
+
+function setShortcutIdentity(calculatorId) {
+  const meta = calculatorMeta[calculatorId];
+  if (!meta) return;
+  document.title = `JOB-IT ${meta.label}`;
+  let icon = document.querySelector('link[rel="icon"]');
+  if (!icon) {
+    icon = document.createElement("link");
+    icon.rel = "icon";
+    document.head.appendChild(icon);
+  }
+  icon.href = meta.icon;
+  icon.type = "image/svg+xml";
+}
+
+function resetShortcutIdentity() {
+  document.title = defaultTitle;
+  const icon = document.querySelector('link[rel="icon"]');
+  if (icon) icon.href = "assets/icons/job-it.svg";
+}
+
 function inchesToFeetAndInches(inches) {
   if (!Number.isFinite(inches) || inches < 0) return "0' 0\"";
   const feet = Math.floor(inches / 12);
@@ -150,7 +183,7 @@ function updateLayout() {
   if (mode === "square") {
     const diagonal = Math.hypot(a, b);
     $("layoutMain").textContent = `${round(diagonal, 3)} ft diagonal`;
-    $("layoutSecondary").textContent = `${inchesToFeetAndInches(diagonal * 12)}`;
+    $("layoutSecondary").textContent = inchesToFeetAndInches(diagonal * 12);
     $("layoutCue").textContent = "Match both diagonals";
     $("layoutBUnit").textContent = "ft";
     $("layoutCUnit").textContent = "in";
@@ -181,29 +214,175 @@ function recalculateAll() {
   updateLayout();
 }
 
-function setupMobileMode() {
-  const scrim = $("mobileScrim");
-  document.querySelectorAll("[data-mobile-toggle]").forEach((button) => {
-    button.addEventListener("click", () => {
-      const card = button.closest(".calculator");
-      const isOpen = card.classList.toggle("mobile-mode");
-      document.body.classList.toggle("mobile-open", isOpen);
-      scrim.hidden = !isOpen;
-      button.textContent = isOpen ? "Close" : "Mobile";
+function isInteractiveElement(target) {
+  return Boolean(target.closest("button, input, select, textarea, a, label"));
+}
+
+function getShortcutUrl(calculatorId) {
+  const url = new URL(window.location.href);
+  url.search = "";
+  url.searchParams.set("calc", calculatorId);
+  url.searchParams.set("shortcut", "1");
+  return url.toString();
+}
+
+function openCalculator(calculatorId, options = {}) {
+  const card = document.querySelector(`[data-calculator="${calculatorId}"]`);
+  if (!card) return;
+
+  document.querySelectorAll(".calculator.expanded-mode").forEach((openCard) => {
+    if (openCard !== card) {
+      openCard.classList.remove("expanded-mode");
+      openCard.querySelector("[data-mobile-toggle]").textContent = "Mobile";
+    }
+  });
+
+  card.classList.add("expanded-mode");
+  card.querySelector("[data-mobile-toggle]").textContent = "Close";
+  document.body.classList.add("calculator-open");
+  $("mobileScrim").hidden = false;
+  setShortcutIdentity(calculatorId);
+
+  if (!options.preserveUrl && !openedFromShortcut) {
+    const url = new URL(window.location.href);
+    url.searchParams.set("calc", calculatorId);
+    window.history.replaceState({}, "", url);
+  }
+
+  card.scrollTop = 0;
+}
+
+function closeCalculator(options = {}) {
+  const openCard = document.querySelector(".calculator.expanded-mode");
+  if (!openCard) return;
+  openCard.classList.remove("expanded-mode");
+  openCard.querySelector("[data-mobile-toggle]").textContent = "Mobile";
+  document.body.classList.remove("calculator-open");
+  $("mobileScrim").hidden = true;
+  resetShortcutIdentity();
+
+  if (!options.preserveUrl && !openedFromShortcut) {
+    const url = new URL(window.location.href);
+    url.searchParams.delete("calc");
+    window.history.replaceState({}, "", url);
+  }
+}
+
+function shortcutInstructions(calculatorId) {
+  const meta = calculatorMeta[calculatorId];
+  const url = getShortcutUrl(calculatorId);
+  return [
+    `${meta.title}`,
+    `Shortcut label: JOB-IT ${meta.label}`,
+    `Shortcut URL: ${url}`,
+    "If your browser does not show an install prompt, use the browser menu and choose Add to Home Screen."
+  ].join("\n");
+}
+
+async function createMobileShortcut(calculatorId) {
+  const meta = calculatorMeta[calculatorId];
+  if (deferredInstallPrompt) {
+    deferredInstallPrompt.prompt();
+    await deferredInstallPrompt.userChoice;
+    deferredInstallPrompt = null;
+    return;
+  }
+
+  const shareData = {
+    title: `JOB-IT ${meta.label}`,
+    text: shortcutInstructions(calculatorId),
+    url: getShortcutUrl(calculatorId)
+  };
+
+  if (navigator.share && (!navigator.canShare || navigator.canShare(shareData))) {
+    await navigator.share(shareData);
+    return;
+  }
+
+  window.prompt("Copy this calculator shortcut URL, then add it to your home screen:", getShortcutUrl(calculatorId));
+}
+
+function addExpandedControls() {
+  document.querySelectorAll(".calculator").forEach((card) => {
+    const calculatorId = card.dataset.calculator;
+    const meta = calculatorMeta[calculatorId];
+    const actions = document.createElement("div");
+    actions.className = "expanded-actions";
+    actions.innerHTML = `
+      <div class="shortcut-preview" aria-hidden="true">
+        <img src="${meta.icon}" alt="" />
+        <span>${meta.label}</span>
+      </div>
+      <button class="shortcut-button" type="button" data-shortcut-button>CREATE MOBILE SHORTCUT</button>
+    `;
+    card.appendChild(actions);
+  });
+}
+
+function setupExpandedCalculators() {
+  const params = new URLSearchParams(window.location.search);
+  const initialCalculator = params.get("calc");
+  openedFromShortcut = params.get("shortcut") === "1";
+
+  if (openedFromShortcut) {
+    document.body.classList.add("shortcut-launch");
+  }
+
+  document.querySelectorAll(".calculator").forEach((card) => {
+    const calculatorId = card.dataset.calculator;
+
+    card.addEventListener("click", (event) => {
+      if (card.classList.contains("expanded-mode") || event.target.closest("[data-mobile-toggle]")) return;
+      if (isInteractiveElement(event.target)) {
+        event.preventDefault();
+        event.target.blur?.();
+      }
+      openCalculator(calculatorId);
+    });
+
+    card.querySelector("[data-mobile-toggle]").addEventListener("click", (event) => {
+      event.stopPropagation();
+      if (card.classList.contains("expanded-mode")) {
+        closeCalculator({ preserveUrl: openedFromShortcut });
+      } else {
+        openCalculator(calculatorId);
+      }
+    });
+
+    card.querySelector("[data-shortcut-button]").addEventListener("click", (event) => {
+      event.stopPropagation();
+      createMobileShortcut(calculatorId).catch(() => {
+        window.prompt("Copy this calculator shortcut URL, then add it to your home screen:", getShortcutUrl(calculatorId));
+      });
     });
   });
 
-  scrim.addEventListener("click", () => {
-    const openCard = document.querySelector(".calculator.mobile-mode");
-    if (!openCard) return;
-    openCard.classList.remove("mobile-mode");
-    openCard.querySelector("[data-mobile-toggle]").textContent = "Mobile";
-    document.body.classList.remove("mobile-open");
-    scrim.hidden = true;
+  $("mobileScrim").addEventListener("click", () => closeCalculator({ preserveUrl: openedFromShortcut }));
+
+  if (initialCalculator && calculatorMeta[initialCalculator]) {
+    openCalculator(initialCalculator, { preserveUrl: true });
+    if (openedFromShortcut) {
+      document.querySelectorAll(".calculator").forEach((card) => {
+        card.hidden = card.dataset.calculator !== initialCalculator;
+      });
+    }
+  }
+}
+
+function setupPwa() {
+  window.addEventListener("beforeinstallprompt", (event) => {
+    event.preventDefault();
+    deferredInstallPrompt = event;
   });
+
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("sw.js").catch(() => {});
+  }
 }
 
 document.addEventListener("input", recalculateAll);
 document.addEventListener("change", recalculateAll);
-setupMobileMode();
+addExpandedControls();
+setupExpandedCalculators();
+setupPwa();
 recalculateAll();

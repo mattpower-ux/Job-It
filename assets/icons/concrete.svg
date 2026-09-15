@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="112" fill="#052847"/>
+  <rect x="52" y="52" width="408" height="408" rx="86" fill="#0d87a4"/>
+  <path d="M118 248h218l58 50H170Z" fill="#dff3f6"/>
+  <path d="M170 298h224l-28 57H143Z" fill="#5ca9b6"/>
+  <path d="M118 248l52 50-27 57-55-60Z" fill="#195e6d"/>
+  <text x="256" y="122" text-anchor="middle" font-family="Georgia,serif" font-size="58" font-weight="900" fill="#fff">JOB-IT</text>
+  <text x="256" y="415" text-anchor="middle" font-family="Arial,sans-serif" font-size="44" font-weight="900" fill="#fff">CONCRETE</text>
+</svg>

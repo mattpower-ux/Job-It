@@ -126,6 +126,7 @@ h2 {
   box-shadow: 0 12px 28px rgba(8, 50, 85, 0.11);
   position: relative;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .calculator::before {
@@ -264,6 +265,12 @@ select {
   padding: 0 10px;
   outline: none;
   box-shadow: inset 0 1px 0 rgba(4, 33, 61, 0.03);
+  cursor: text;
+}
+
+select,
+button {
+  cursor: pointer;
 }
 
 input:focus,
@@ -533,7 +540,11 @@ select:focus {
   z-index: 20;
 }
 
-.calculator.mobile-mode {
+.expanded-actions {
+  display: none;
+}
+
+.calculator.expanded-mode {
   position: fixed;
   z-index: 30;
   inset: 0;
@@ -543,14 +554,152 @@ select:focus {
   border-radius: 0;
   overflow-y: auto;
   padding: 18px;
+  cursor: default;
+  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.32);
 }
 
-.calculator.mobile-mode .mobile-toggle {
+.calculator.expanded-mode::after {
+  content: "JOB-IT";
+  position: sticky;
+  bottom: -18px;
+  display: block;
+  margin: 14px -18px -18px;
+  padding: 12px;
+  color: #fff;
+  background: var(--navy);
+  text-align: center;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.05rem;
+  font-weight: 900;
+}
+
+.calculator.expanded-mode .card-top {
+  position: sticky;
+  top: -18px;
+  z-index: 4;
+  margin: -18px -18px 0;
+  padding: 14px 18px 12px;
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+}
+
+.calculator.expanded-mode h2 {
+  font-size: 1.22rem;
+}
+
+.calculator.expanded-mode .kicker {
+  color: var(--blue);
+}
+
+.calculator.expanded-mode .calc-banner {
+  min-height: 116px;
+  grid-template-columns: 1fr 140px;
+}
+
+.calculator.expanded-mode .banner-art {
+  width: 144px;
+  height: 98px;
+}
+
+.calculator.expanded-mode .form-grid {
+  grid-template-columns: 1fr;
+}
+
+.calculator.expanded-mode .metric {
+  min-height: 56px;
+}
+
+.calculator.expanded-mode .expanded-actions {
+  display: grid;
+  grid-template-columns: 82px 1fr;
+  align-items: center;
+  gap: 12px;
+  margin-top: 2px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: #f7fbfe;
+}
+
+.shortcut-preview {
+  display: grid;
+  justify-items: center;
+  gap: 5px;
+  color: var(--ink);
+  font-size: 0.62rem;
+  font-weight: 950;
+  letter-spacing: 0.04em;
+}
+
+.shortcut-preview img {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  box-shadow: 0 9px 18px rgba(4, 33, 61, 0.22);
+}
+
+.shortcut-button {
+  min-height: 48px;
+  border: 0;
+  border-radius: 14px;
+  background: var(--blue);
+  color: #fff;
+  font-weight: 950;
+  letter-spacing: 0.02em;
+  box-shadow: 0 12px 24px rgba(25, 118, 210, 0.24);
+}
+
+.shortcut-button:hover {
   background: var(--blue-dark);
 }
 
-body.mobile-open {
+.calculator.expanded-mode .mobile-toggle {
+  background: var(--blue-dark);
+  text-transform: uppercase;
+}
+
+body.calculator-open {
   overflow: hidden;
+}
+
+body.shortcut-launch.calculator-open {
+  overflow: auto;
+}
+
+body.shortcut-launch .portal-header {
+  display: none;
+}
+
+body.shortcut-launch .calculator-grid {
+  display: block;
+  max-width: none;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background: var(--page);
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+body.shortcut-launch .calculator.expanded-mode {
+  position: relative;
+  width: min(430px, 100vw);
+  min-height: 100vh;
+  height: auto;
+  margin: 0 auto;
+}
+
+body.shortcut-launch .calculator.expanded-mode .expanded-actions {
+  display: none;
+}
+
+body.shortcut-launch .calculator.expanded-mode .mobile-toggle {
+  display: none;
+}
+
+body.shortcut-launch .mobile-scrim {
+  display: none;
 }
 
 @media (max-width: 1180px) {
@@ -580,6 +729,10 @@ body.mobile-open {
 
   .calculator {
     min-height: auto;
+  }
+
+  .calculator.expanded-mode {
+    width: 100vw;
   }
 
   .calc-banner {
