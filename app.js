@@ -12,6 +12,39 @@ const calculatorMeta = {
   layout: { label: "LAYOUT", title: "Layout, Level & Squaring", icon: "assets/icons/layout.svg" }
 };
 
+const specialtyMeta = {
+  concrete: [
+    { label: "Slab", image: "assets/specialties/concrete-slab.png", fields: { concreteShape: "slab", concreteLength: 32, concreteWidth: 144, concreteDepth: 4, concreteQty: 1, concreteWaste: 8 } },
+    { label: "Footing", image: "assets/specialties/concrete-footing.png", fields: { concreteShape: "footing", concreteLength: 48, concreteWidth: 24, concreteDepth: 12, concreteQty: 1, concreteWaste: 10 } },
+    { label: "Pier", image: "assets/specialties/concrete-pier.png", fields: { concreteShape: "pier", concreteLength: 1, concreteWidth: 16, concreteDepth: 48, concreteQty: 8, concreteWaste: 8 } }
+  ],
+  roof: [
+    { label: "Common Rafter", image: "assets/specialties/roof-common.png", fields: { roofSpan: 28, roofPitch: 6, roofOverhang: 18, roofSpacing: 16 } },
+    { label: "Hip / Valley", image: "assets/specialties/roof-hip-valley.png", fields: { roofSpan: 30, roofPitch: 8, roofOverhang: 16, roofSpacing: 16 } },
+    { label: "Shed Roof", image: "assets/specialties/roof-shed.png", fields: { roofSpan: 16, roofPitch: 3, roofOverhang: 12, roofSpacing: 24 } }
+  ],
+  trim: [
+    { label: "Inside Corner", image: "assets/specialties/trim-inside-corner.png", fields: { trimProfile: "crown", trimCorner: "inside", trimWallAngle: 90, trimSpring: 38 } },
+    { label: "Baseboard", image: "assets/specialties/trim-baseboard.png", fields: { trimProfile: "base", trimCorner: "outside", trimWallAngle: 90, trimSpring: 38 } },
+    { label: "Crown", image: "assets/specialties/trim-crown.png", fields: { trimProfile: "crown", trimCorner: "inside", trimWallAngle: 90, trimSpring: 45 } }
+  ],
+  stairs: [
+    { label: "Stringer", image: "assets/specialties/stairs-stringer.png", fields: { stairRise: 108, stairTargetRiser: 7.5, stairTread: 10.5, stairStringers: 3 } },
+    { label: "Decking", image: "assets/specialties/stairs-decking.png", fields: { stairRise: 36, stairTargetRiser: 7.25, stairTread: 11, stairStringers: 4 } },
+    { label: "Ramp", image: "assets/specialties/stairs-ramp.png", fields: { stairRise: 24, stairTargetRiser: 6, stairTread: 12, stairStringers: 2 } }
+  ],
+  takeoff: [
+    { label: "Framing", image: "assets/specialties/takeoff-framing.png", fields: { takeoffCategory: "wall", takeoffLength: 40, takeoffHeight: 9, takeoffSpacing: 16, takeoffOpenings: 2, takeoffWaste: 10 } },
+    { label: "Drywall", image: "assets/specialties/takeoff-drywall.png", fields: { takeoffCategory: "drywall", takeoffLength: 48, takeoffHeight: 8, takeoffSpacing: 32, takeoffOpenings: 3, takeoffWaste: 12 } },
+    { label: "Roofing", image: "assets/specialties/takeoff-roofing.png", fields: { takeoffCategory: "roofing", takeoffLength: 42, takeoffHeight: 18, takeoffSpacing: 0, takeoffOpenings: 0, takeoffWaste: 10 } }
+  ],
+  layout: [
+    { label: "Squaring", image: "assets/specialties/layout-squaring.png", fields: { layoutMode: "square" } },
+    { label: "Slope", image: "assets/specialties/layout-slope.png", fields: { layoutMode: "slope" } },
+    { label: "Spacing", image: "assets/specialties/layout-spacing.png", fields: { layoutMode: "spacing" } }
+  ]
+};
+
 let deferredInstallPrompt = null;
 let openedFromShortcut = false;
 let lastLayoutMode = null;
@@ -84,9 +117,12 @@ function updateRoof() {
   $("roofRafter").textContent = inchesToFeetAndInches(lengthIn);
   $("roofAngle").textContent = `${round(angle, 2)} deg`;
   $("roofCount").textContent = count.toString();
-  $("roofRiseLabel").textContent = `rise ${inchesToFeetAndInches(riseIn)}`;
-  document.querySelector(".roof-line.left").style.transform = `rotate(${180 - angle}deg)`;
-  document.querySelector(".roof-line.right").style.transform = `rotate(${angle}deg)`;
+  const roofRiseLabel = $("roofRiseLabel");
+  if (roofRiseLabel) roofRiseLabel.textContent = `rise ${inchesToFeetAndInches(riseIn)}`;
+  const leftRoofLine = document.querySelector(".roof-line.left");
+  const rightRoofLine = document.querySelector(".roof-line.right");
+  if (leftRoofLine) leftRoofLine.style.transform = `rotate(${180 - angle}deg)`;
+  if (rightRoofLine) rightRoofLine.style.transform = `rotate(${angle}deg)`;
 }
 
 function updateTrim() {
@@ -112,7 +148,8 @@ function updateTrim() {
   $("trimMiter").textContent = `${round(Math.abs(miter), 1)} deg`;
   $("trimBevel").textContent = `${round(Math.abs(bevel), 1)} deg`;
   $("trimNote").textContent = note;
-  $("trimBlade").style.transform = `rotate(${Math.min(50, Math.abs(miter))}deg)`;
+  const trimBlade = $("trimBlade");
+  if (trimBlade) trimBlade.style.transform = `rotate(${Math.min(50, Math.abs(miter))}deg)`;
 }
 
 function updateStairs() {
@@ -134,13 +171,15 @@ function updateStairs() {
   $("stairRule").textContent = `${round(comfortRule, 2)}" ${stairOk ? "OK" : "check"}`;
 
   const visual = $("stairVisual");
-  visual.innerHTML = "";
-  const blocks = Math.min(8, risers);
-  for (let i = 0; i < blocks; i += 1) {
-    const block = document.createElement("span");
-    block.className = "step-block";
-    block.style.height = `${26 + i * 8}%`;
-    visual.appendChild(block);
+  if (visual) {
+    visual.innerHTML = "";
+    const blocks = Math.min(8, risers);
+    for (let i = 0; i < blocks; i += 1) {
+      const block = document.createElement("span");
+      block.className = "step-block";
+      block.style.height = `${26 + i * 8}%`;
+      visual.appendChild(block);
+    }
   }
 }
 
@@ -386,6 +425,49 @@ function addExpandedControls() {
   });
 }
 
+function setFieldValue(id, value) {
+  const field = $(id);
+  if (!field) return;
+  field.value = value;
+}
+
+function applySpecialty(calculatorId, index) {
+  const specialty = specialtyMeta[calculatorId]?.[index];
+  const card = document.querySelector(`[data-calculator="${calculatorId}"]`);
+  if (!specialty || !card) return;
+
+  Object.entries(specialty.fields).forEach(([id, value]) => setFieldValue(id, value));
+  card.querySelectorAll("[data-specialty-tile]").forEach((tile) => {
+    tile.classList.toggle("selected", Number(tile.dataset.specialtyIndex) === index);
+  });
+  const prompt = card.querySelector(".field-question");
+  if (prompt) prompt.textContent = `Specialized calculator: ${specialty.label}`;
+  recalculateAll();
+  openCalculator(calculatorId);
+}
+
+function addSpecialtyTiles() {
+  document.querySelectorAll(".calculator").forEach((card) => {
+    const calculatorId = card.dataset.calculator;
+    const grid = card.querySelector("[data-specialty-grid]");
+    if (!grid || !specialtyMeta[calculatorId]) return;
+
+    grid.innerHTML = specialtyMeta[calculatorId].map((specialty, index) => `
+      <button class="specialty-tile" type="button" data-specialty-tile data-specialty-index="${index}">
+        <img src="${specialty.image}" alt="" />
+        <span>${specialty.label}</span>
+      </button>
+    `).join("");
+
+    grid.querySelectorAll("[data-specialty-tile]").forEach((tile) => {
+      tile.addEventListener("click", (event) => {
+        event.stopPropagation();
+        applySpecialty(calculatorId, Number(tile.dataset.specialtyIndex));
+      });
+    });
+  });
+}
+
 function setupExpandedCalculators() {
   const params = new URLSearchParams(window.location.search);
   const initialCalculator = params.get("calc");
@@ -450,6 +532,7 @@ function setupPwa() {
 document.addEventListener("input", recalculateAll);
 document.addEventListener("change", recalculateAll);
 addExpandedControls();
+addSpecialtyTiles();
 setupExpandedCalculators();
 setupPwa();
 recalculateAll();

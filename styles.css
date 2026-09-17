@@ -365,6 +365,49 @@ select:focus {
   font-size: 1.34rem;
 }
 
+.specialty-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: auto;
+}
+
+.specialty-tile {
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+  padding: 8px;
+  color: var(--ink);
+  background: #fff;
+  border: 2px solid var(--line);
+  border-radius: 16px;
+  text-align: left;
+  font-weight: 950;
+  box-shadow: 0 8px 20px rgba(8, 50, 85, 0.08);
+  cursor: pointer;
+}
+
+.specialty-tile img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 12px;
+  background: #e9f3f9;
+}
+
+.specialty-tile span {
+  min-height: 2.3em;
+  font-size: 0.88rem;
+  line-height: 1.15;
+}
+
+.specialty-tile:hover,
+.specialty-tile.selected {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.16), 0 10px 24px rgba(8, 50, 85, 0.14);
+}
+
 .mini-visual,
 .roof-diagram,
 .saw-visual,
@@ -625,6 +668,24 @@ select:focus {
   min-height: 50px;
 }
 
+.calculator.expanded-mode .specialty-grid {
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.calculator.expanded-mode .specialty-tile {
+  padding: 7px;
+  border-radius: 14px;
+}
+
+.calculator.expanded-mode .specialty-tile img {
+  border-radius: 10px;
+}
+
+.calculator.expanded-mode .specialty-tile span {
+  font-size: 0.82rem;
+}
+
 .calculator.expanded-mode .expanded-actions {
   display: grid;
   grid-template-columns: 82px 1fr;
@@ -809,6 +870,18 @@ body.shortcut-launch .mobile-scrim {
 
   .calculator {
     min-height: auto;
+  }
+
+  .specialty-grid {
+    gap: 8px;
+  }
+
+  .specialty-tile {
+    padding: 7px;
+  }
+
+  .specialty-tile span {
+    font-size: 0.8rem;
   }
 
   .calculator.expanded-mode {
