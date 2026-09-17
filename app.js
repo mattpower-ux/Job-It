@@ -355,6 +355,11 @@ function closeCalculator(options = {}) {
   }
 }
 
+function setParentToolControlsHidden(card, hidden) {
+  card.querySelector("[data-specialty-grid]")?.toggleAttribute("hidden", hidden);
+  card.querySelector(".expanded-actions")?.toggleAttribute("hidden", hidden);
+}
+
 function enterSpecialtyMode(card, specialty) {
   const prompt = card.querySelector(".field-question");
   if (prompt) {
@@ -362,6 +367,7 @@ function enterSpecialtyMode(card, specialty) {
     prompt.textContent = `Specialized calculator: ${specialty.label}`;
   }
   card.classList.add("specialty-mode");
+  setParentToolControlsHidden(card, true);
 }
 
 function exitSpecialtyMode(card) {
@@ -371,6 +377,7 @@ function exitSpecialtyMode(card) {
     prompt.textContent = prompt.dataset.defaultQuestion;
   }
   card.classList.remove("specialty-mode");
+  setParentToolControlsHidden(card, false);
   card.querySelectorAll("[data-specialty-tile]").forEach((tile) => tile.classList.remove("selected"));
 }
 
