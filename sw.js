@@ -1,16 +1,16 @@
-const CACHE_NAME = "job-it-v4";
+const CACHE_NAME = "job-it-v5";
 const ASSETS = [
   "./",
   "./index.html",
   "./styles.css",
   "./app.js",
   "./manifest.webmanifest",
-  "./assets/concrete-foundation.svg",
-  "./assets/roof-framing.svg",
-  "./assets/trim-molding.svg",
-  "./assets/stairs-decks.svg",
-  "./assets/material-takeoff.svg",
-  "./assets/layout-squaring.svg",
+  "./assets/realistic/concrete.png",
+  "./assets/realistic/roof.png",
+  "./assets/realistic/trim.png",
+  "./assets/realistic/stairs.png",
+  "./assets/realistic/takeoff.png",
+  "./assets/realistic/layout.png",
   "./assets/icons/job-it.svg",
   "./assets/icons/concrete.svg",
   "./assets/icons/roof.svg",

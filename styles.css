@@ -85,7 +85,7 @@ h1 {
 }
 
 h2 {
-  font-size: 1.24rem;
+  font-size: 1.4rem;
   line-height: 1.12;
   font-weight: 900;
 }
@@ -93,7 +93,7 @@ h2 {
 .field-question {
   margin: 5px 0 0;
   color: var(--text);
-  font-size: 0.92rem;
+  font-size: 1.05rem;
   line-height: 1.25;
   font-weight: 800;
 }
@@ -169,9 +169,9 @@ h2 {
 }
 
 .calc-banner {
-  min-height: 96px;
+  min-height: 118px;
   display: grid;
-  grid-template-columns: 1fr 130px;
+  grid-template-columns: 1fr 178px;
   align-items: center;
   gap: 8px;
   padding: 14px;
@@ -183,12 +183,7 @@ h2 {
 }
 
 .calc-banner::after {
-  content: "";
-  position: absolute;
-  inset: 10px 10px 10px auto;
-  width: 118px;
-  border: 1px solid rgba(255, 255, 255, 0.34);
-  border-radius: 999px;
+  content: none;
 }
 
 .banner-copy {
@@ -215,10 +210,13 @@ h2 {
 .banner-art {
   position: relative;
   z-index: 1;
-  width: 132px;
-  height: 86px;
-  object-fit: contain;
-  filter: drop-shadow(0 10px 18px rgba(0, 22, 48, 0.18));
+  width: 178px;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  object-fit: cover;
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  border-radius: 12px;
+  filter: drop-shadow(0 10px 18px rgba(0, 22, 48, 0.22));
 }
 
 [data-calculator="concrete"] {
@@ -256,8 +254,8 @@ label {
   gap: 4px;
   color: #526984;
   font-family: "Trebuchet MS", "Segoe UI", sans-serif;
-  font-size: 0.7rem;
-  font-weight: 900;
+  font-size: 0.9rem;
+  font-weight: 950;
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
@@ -265,7 +263,7 @@ label {
 input,
 select {
   width: 100%;
-  min-height: 38px;
+  min-height: 46px;
   color: var(--ink);
   background: #fff;
   border: 1px solid var(--line);
@@ -273,6 +271,8 @@ select {
   padding: 0 10px;
   outline: none;
   box-shadow: inset 0 1px 0 rgba(4, 33, 61, 0.03);
+  font-size: 1.05rem;
+  font-weight: 850;
   cursor: text;
 }
 
@@ -304,15 +304,15 @@ select:focus {
 
 .input-row input {
   border: 0;
-  min-height: 36px;
+  min-height: 44px;
   box-shadow: none;
 }
 
 .input-row span {
   color: var(--muted);
   padding: 0 9px 0 4px;
-  font-size: 0.72rem;
-  font-weight: 900;
+  font-size: 0.9rem;
+  font-weight: 950;
   white-space: nowrap;
 }
 
@@ -337,8 +337,8 @@ select:focus {
 .metric span {
   color: var(--muted);
   font-family: "Consolas", "Courier New", monospace;
-  font-size: 0.73rem;
-  font-weight: 900;
+  font-size: 0.9rem;
+  font-weight: 950;
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
@@ -346,7 +346,7 @@ select:focus {
 .metric strong {
   color: var(--ink);
   text-align: right;
-  font-size: 1.02rem;
+  font-size: 1.22rem;
   font-weight: 950;
 }
 
@@ -362,7 +362,7 @@ select:focus {
 .metric.primary strong {
   color: var(--green);
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 1.18rem;
+  font-size: 1.34rem;
 }
 
 .mini-visual,
@@ -594,12 +594,12 @@ select:focus {
 }
 
 .calculator.expanded-mode h2 {
-  font-size: 1.44rem;
+  font-size: 1.62rem;
   line-height: 1.1;
 }
 
 .calculator.expanded-mode .field-question {
-  font-size: 1rem;
+  font-size: 1.12rem;
 }
 
 .calculator.expanded-mode .kicker {
@@ -607,13 +607,13 @@ select:focus {
 }
 
 .calculator.expanded-mode .calc-banner {
-  min-height: 98px;
-  grid-template-columns: 1fr 126px;
+  min-height: 112px;
+  grid-template-columns: 1fr 154px;
 }
 
 .calculator.expanded-mode .banner-art {
-  width: 128px;
-  height: 86px;
+  width: 154px;
+  height: auto;
 }
 
 .calculator.expanded-mode .form-grid {
@@ -821,7 +821,19 @@ body.shortcut-launch .mobile-scrim {
   }
 
   .calc-banner {
-    grid-template-columns: 1fr 104px;
+    grid-template-columns: 1fr 112px;
+  }
+
+  .banner-art {
+    width: 112px;
+  }
+
+  .calculator.expanded-mode .calc-banner {
+    grid-template-columns: 1fr 120px;
+  }
+
+  .calculator.expanded-mode .banner-art {
+    width: 120px;
   }
 
   .form-grid {
