@@ -1,0 +1,13 @@
+{
+  "name": "job-it",
+  "version": "1.0.0",
+  "private": true,
+  "description": "JOB-IT contractor calculator toolkit.",
+  "scripts": {
+    "start": "node server.js",
+    "build": "node build-static.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
