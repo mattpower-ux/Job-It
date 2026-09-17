@@ -538,9 +538,13 @@ function setupExpandedCalculators() {
   const params = new URLSearchParams(window.location.search);
   const initialCalculator = params.get("calc");
   openedFromShortcut = params.get("shortcut") === "1";
+  const forcedMenu = params.get("menu") === "1";
 
   if (openedFromShortcut) {
     document.body.classList.add("shortcut-launch");
+  }
+  if (forcedMenu) {
+    document.body.classList.add("menu-launch");
   }
 
   document.querySelectorAll(".calculator").forEach((card) => {
