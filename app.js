@@ -4,13 +4,15 @@ const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
 const round = (value, places = 2) => Number(value).toFixed(places);
 
 const calculatorMeta = {
-  concrete: { label: "CONCRETE", title: "Concrete & Foundation", icon: "assets/icons/concrete.svg" },
-  roof: { label: "ROOF", title: "Roof & Rafter Geometry", icon: "assets/icons/roof.svg" },
-  trim: { label: "TRIM", title: "Trim & Molding Cuts", icon: "assets/icons/trim.svg" },
-  stairs: { label: "STAIRS", title: "Stairs, Ramps & Decks", icon: "assets/icons/stairs.svg" },
-  takeoff: { label: "TAKEOFF", title: "Material Takeoff", icon: "assets/icons/takeoff.svg" },
-  layout: { label: "LAYOUT", title: "Layout, Level & Squaring", icon: "assets/icons/layout.svg" }
+  concrete: { label: "CONCRETE", title: "Concrete & Foundation", cue: "Yards, bags, footings", icon: "assets/icons/concrete.svg", image: "assets/realistic/concrete.png" },
+  roof: { label: "ROOF", title: "Roof & Rafter Geometry", cue: "Rafters, pitch, cuts", icon: "assets/icons/roof.svg", image: "assets/realistic/roof.png" },
+  trim: { label: "TRIM", title: "Trim & Molding Cuts", cue: "Miter, bevel, corners", icon: "assets/icons/trim.svg", image: "assets/realistic/trim.png" },
+  stairs: { label: "STAIRS", title: "Stairs, Ramps & Decks", cue: "Risers, treads, ramps", icon: "assets/icons/stairs.svg", image: "assets/realistic/stairs.png" },
+  takeoff: { label: "TAKEOFF", title: "Material Takeoff", cue: "Studs, sheets, roofing", icon: "assets/icons/takeoff.svg", image: "assets/realistic/takeoff.png" },
+  layout: { label: "LAYOUT", title: "Layout, Level & Squaring", cue: "Square, slope, spacing", icon: "assets/icons/layout.svg", image: "assets/realistic/layout.png" }
 };
+
+const calculatorOrder = ["concrete", "roof", "trim", "stairs", "takeoff", "layout"];
 
 const specialtyMeta = {
   concrete: [
@@ -309,6 +311,9 @@ function openCalculator(calculatorId, options = {}) {
 
   card.classList.add("expanded-mode");
   card.querySelector("[data-mobile-toggle]").textContent = "Close";
+  document.querySelectorAll("[data-launch-calculator]").forEach((button) => {
+    button.classList.toggle("active", button.dataset.launchCalculator === calculatorId);
+  });
   document.body.classList.add("calculator-open");
   $("mobileScrim").hidden = false;
   setShortcutIdentity(calculatorId);
@@ -327,6 +332,7 @@ function closeCalculator(options = {}) {
   if (!openCard) return;
   openCard.classList.remove("expanded-mode");
   openCard.querySelector("[data-mobile-toggle]").textContent = "Mobile";
+  document.querySelectorAll("[data-launch-calculator]").forEach((button) => button.classList.remove("active"));
   document.body.classList.remove("calculator-open");
   $("mobileScrim").hidden = true;
   resetShortcutIdentity();
@@ -468,6 +474,30 @@ function addSpecialtyTiles() {
   });
 }
 
+function addMobileLauncher() {
+  const menu = $("mobileMenuBars");
+  if (!menu) return;
+
+  menu.innerHTML = calculatorOrder.map((calculatorId, index) => {
+    const meta = calculatorMeta[calculatorId];
+    return `
+      <button class="mobile-menu-bar" type="button" data-launch-calculator="${calculatorId}">
+        <span class="mobile-menu-index">${String(index + 1).padStart(2, "0")}</span>
+        <img src="${meta.image}" alt="" />
+        <span class="mobile-menu-copy">
+          <strong>${meta.label}</strong>
+          <span>${meta.title}</span>
+          <em>${meta.cue}</em>
+        </span>
+      </button>
+    `;
+  }).join("");
+
+  menu.querySelectorAll("[data-launch-calculator]").forEach((button) => {
+    button.addEventListener("click", () => openCalculator(button.dataset.launchCalculator));
+  });
+}
+
 function setupExpandedCalculators() {
   const params = new URLSearchParams(window.location.search);
   const initialCalculator = params.get("calc");
@@ -533,6 +563,7 @@ document.addEventListener("input", recalculateAll);
 document.addEventListener("change", recalculateAll);
 addExpandedControls();
 addSpecialtyTiles();
+addMobileLauncher();
 setupExpandedCalculators();
 setupPwa();
 recalculateAll();

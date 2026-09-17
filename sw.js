@@ -1,4 +1,4 @@
-const CACHE_NAME = "job-it-v6";
+const CACHE_NAME = "job-it-v7";
 const ASSETS = [
   "./",
   "./index.html",
