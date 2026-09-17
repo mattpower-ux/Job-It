@@ -304,10 +304,15 @@ function openCalculator(calculatorId, options = {}) {
 
   document.querySelectorAll(".calculator.expanded-mode").forEach((openCard) => {
     if (openCard !== card) {
+      exitSpecialtyMode(openCard);
       openCard.classList.remove("expanded-mode");
       openCard.querySelector("[data-mobile-toggle]").textContent = "Mobile";
     }
   });
+
+  if (!options.specialty) {
+    exitSpecialtyMode(card);
+  }
 
   card.classList.add("expanded-mode");
   card.querySelector("[data-mobile-toggle]").textContent = "Close";
@@ -330,6 +335,12 @@ function openCalculator(calculatorId, options = {}) {
 function closeCalculator(options = {}) {
   const openCard = document.querySelector(".calculator.expanded-mode");
   if (!openCard) return;
+  if (openCard.classList.contains("specialty-mode") && !options.force) {
+    exitSpecialtyMode(openCard);
+    openCard.scrollTop = 0;
+    return;
+  }
+  exitSpecialtyMode(openCard);
   openCard.classList.remove("expanded-mode");
   openCard.querySelector("[data-mobile-toggle]").textContent = "Mobile";
   document.querySelectorAll("[data-launch-calculator]").forEach((button) => button.classList.remove("active"));
@@ -342,6 +353,25 @@ function closeCalculator(options = {}) {
     url.searchParams.delete("calc");
     window.history.replaceState({}, "", url);
   }
+}
+
+function enterSpecialtyMode(card, specialty) {
+  const prompt = card.querySelector(".field-question");
+  if (prompt) {
+    if (!prompt.dataset.defaultQuestion) prompt.dataset.defaultQuestion = prompt.textContent;
+    prompt.textContent = `Specialized calculator: ${specialty.label}`;
+  }
+  card.classList.add("specialty-mode");
+}
+
+function exitSpecialtyMode(card) {
+  if (!card) return;
+  const prompt = card.querySelector(".field-question");
+  if (prompt?.dataset.defaultQuestion) {
+    prompt.textContent = prompt.dataset.defaultQuestion;
+  }
+  card.classList.remove("specialty-mode");
+  card.querySelectorAll("[data-specialty-tile]").forEach((tile) => tile.classList.remove("selected"));
 }
 
 function shortcutInstructions(calculatorId) {
@@ -446,10 +476,9 @@ function applySpecialty(calculatorId, index) {
   card.querySelectorAll("[data-specialty-tile]").forEach((tile) => {
     tile.classList.toggle("selected", Number(tile.dataset.specialtyIndex) === index);
   });
-  const prompt = card.querySelector(".field-question");
-  if (prompt) prompt.textContent = `Specialized calculator: ${specialty.label}`;
   recalculateAll();
-  openCalculator(calculatorId);
+  openCalculator(calculatorId, { specialty: true });
+  enterSpecialtyMode(card, specialty);
 }
 
 function addSpecialtyTiles() {

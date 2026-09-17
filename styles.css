@@ -702,6 +702,11 @@ select:focus {
   background: #f7fbfe;
 }
 
+.calculator.expanded-mode.specialty-mode .specialty-grid,
+.calculator.expanded-mode.specialty-mode .expanded-actions {
+  display: none;
+}
+
 .shortcut-preview {
   display: grid;
   justify-items: center;
