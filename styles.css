@@ -857,7 +857,7 @@ body.shortcut-launch .mobile-scrim {
 }
 
 body.menu-launch {
-  background: var(--page);
+  background: #fff;
 }
 
 body.menu-launch .portal-header {
@@ -866,15 +866,17 @@ body.menu-launch .portal-header {
 
 body.menu-launch .mobile-launcher {
   width: min(430px, 100%);
-  min-height: 100dvh;
+  min-height: calc(100dvh - 24px);
   display: grid;
   align-content: start;
   gap: 14px;
-  margin: 0 auto;
+  margin: 12px auto;
   padding: 16px 12px 18px;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.1), transparent 260px),
-    var(--page);
+  background: #fff;
+  border: 3px solid var(--blue);
+  border-radius: 36px;
+  box-shadow: 0 18px 44px rgba(4, 33, 61, 0.18);
+  overflow: hidden;
 }
 
 body.menu-launch .mobile-launcher-head {
@@ -1001,7 +1003,7 @@ body.menu-launch.calculator-open .mobile-launcher {
 
 @media (max-width: 760px) {
   body {
-    background: var(--page);
+    background: #fff;
   }
 
   .portal-header {
@@ -1009,14 +1011,18 @@ body.menu-launch.calculator-open .mobile-launcher {
   }
 
   .mobile-launcher {
-    min-height: 100dvh;
+    width: min(430px, 100%);
+    min-height: calc(100dvh - 24px);
     display: grid;
     align-content: start;
     gap: 14px;
+    margin: 12px auto;
     padding: 16px 12px 18px;
-    background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.1), transparent 260px),
-      var(--page);
+    background: #fff;
+    border: 3px solid var(--blue);
+    border-radius: 36px;
+    box-shadow: 0 18px 44px rgba(4, 33, 61, 0.18);
+    overflow: hidden;
   }
 
   .mobile-launcher-head {
