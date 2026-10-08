@@ -1,18 +1,20 @@
 :root {
-  --page: #07304a;
-  --navy: #052847;
+  --page: #f5f2e8;
+  --navy: #2d4846;
   --blue: #1976d2;
   --blue-dark: #0c63bd;
+  --action: #2f514f;
+  --action-dark: #223d3b;
   --teal: #0f9f95;
-  --green: #239b56;
+  --green: #238240;
   --gold: #f2af1d;
   --red: #df5b4f;
   --paper: #ffffff;
   --cream: #fff6e8;
-  --line: #dbe7ef;
-  --ink: #061f3d;
-  --text: #29435f;
-  --muted: #647891;
+  --line: #d8d9cc;
+  --ink: #223a39;
+  --text: #415551;
+  --muted: #66756e;
   --shadow: 0 18px 44px rgba(4, 33, 61, 0.18);
   color-scheme: light;
 }
@@ -28,9 +30,7 @@
 body {
   margin: 0;
   min-height: 100vh;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 280px),
-    var(--page);
+  background: var(--page);
   color: var(--text);
   font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
 }
@@ -65,7 +65,7 @@ select {
 }
 
 .eyebrow {
-  color: var(--blue);
+  color: #d9e5bd;
 }
 
 .kicker {
@@ -162,7 +162,7 @@ h2 {
 
 .mobile-toggle {
   border: 0;
-  background: var(--blue);
+  background: var(--action);
   color: #fff;
   border-radius: 12px;
   min-height: 38px;
@@ -173,7 +173,7 @@ h2 {
 }
 
 .mobile-toggle:hover {
-  background: var(--blue-dark);
+  background: var(--action-dark);
 }
 
 .calc-banner {
@@ -291,8 +291,8 @@ button {
 
 input:focus,
 select:focus {
-  border-color: var(--blue);
-  box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.15);
+  border-color: var(--action);
+  box-shadow: 0 0 0 3px rgba(47, 81, 79, 0.15);
 }
 
 .input-row {
@@ -306,8 +306,8 @@ select:focus {
 }
 
 .input-row:focus-within {
-  border-color: var(--blue);
-  box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.15);
+  border-color: var(--action);
+  box-shadow: 0 0 0 3px rgba(47, 81, 79, 0.15);
 }
 
 .input-row input {
@@ -412,8 +412,8 @@ select:focus {
 
 .specialty-tile:hover,
 .specialty-tile.selected {
-  border-color: var(--blue);
-  box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.16), 0 10px 24px rgba(8, 50, 85, 0.14);
+  border-color: var(--action);
+  box-shadow: 0 0 0 3px rgba(47, 81, 79, 0.16), 0 10px 24px rgba(8, 50, 85, 0.14);
 }
 
 .mini-visual,
@@ -608,10 +608,11 @@ select:focus {
   z-index: 30;
   top: 50%;
   left: 50%;
-  width: min(390px, calc(100vw - 24px));
+  width: min(360px, calc(100vw - 24px));
   height: min(720px, calc(100dvh - 24px));
   margin: 0;
-  border-radius: 24px;
+  border: 3px solid var(--blue);
+  border-radius: 36px;
   overflow-y: auto;
   padding: 18px;
   cursor: default;
@@ -732,7 +733,7 @@ select:focus {
   min-height: 48px;
   border: 0;
   border-radius: 14px;
-  background: var(--blue);
+  background: var(--action);
   color: #fff;
   font-weight: 950;
   letter-spacing: 0.02em;
@@ -740,7 +741,7 @@ select:focus {
 }
 
 .shortcut-button:hover {
-  background: var(--blue-dark);
+  background: var(--action-dark);
 }
 
 .install-dialog {
@@ -794,7 +795,7 @@ select:focus {
 .install-confirm {
   border: 0;
   color: #fff;
-  background: var(--blue);
+  background: var(--action);
 }
 
 .install-cancel {
@@ -804,7 +805,7 @@ select:focus {
 }
 
 .calculator.expanded-mode .mobile-toggle {
-  background: var(--blue-dark);
+  background: var(--action-dark);
   text-transform: uppercase;
 }
 
@@ -826,7 +827,7 @@ body.shortcut-launch .calculator-grid {
   min-height: 100vh;
   margin: 0;
   padding: 0;
-  background: var(--page);
+  background: #fff;
   border: 0;
   border-radius: 0;
   box-shadow: none;
@@ -836,11 +837,12 @@ body.shortcut-launch .calculator.expanded-mode {
   position: relative;
   top: auto;
   left: auto;
-  width: min(390px, 100vw);
-  min-height: 100vh;
+  width: min(360px, calc(100vw - 20px));
+  min-height: calc(100vh - 20px);
   height: auto;
-  margin: 0 auto;
-  border-radius: 0;
+  margin: 10px auto;
+  border: 3px solid var(--blue);
+  border-radius: 36px;
   transform: none;
 }
 
@@ -865,7 +867,7 @@ body.menu-launch .portal-header {
 }
 
 body.menu-launch .mobile-launcher {
-  width: min(430px, 100%);
+  width: min(360px, calc(100vw - 20px));
   min-height: calc(100dvh - 24px);
   display: grid;
   align-content: start;
@@ -916,7 +918,7 @@ body.menu-launch .mobile-menu-bar {
   padding: 10px;
   color: var(--ink);
   background: #fff;
-  border: 3px solid var(--blue);
+  border: 2px solid #d8d9cc;
   border-radius: 18px;
   box-shadow: 0 12px 26px rgba(0, 22, 48, 0.2);
   text-align: left;
@@ -924,7 +926,7 @@ body.menu-launch .mobile-menu-bar {
 
 body.menu-launch .mobile-menu-bar:active,
 body.menu-launch .mobile-menu-bar.active {
-  background: #eef7ff;
+  background: #edf3eb;
   transform: translateY(1px);
 }
 
@@ -934,7 +936,7 @@ body.menu-launch .mobile-menu-index {
   width: 34px;
   height: 34px;
   color: #fff;
-  background: var(--blue);
+  background: var(--action);
   border-radius: 999px;
   font-family: "Consolas", "Courier New", monospace;
   font-size: 0.82rem;
@@ -956,7 +958,7 @@ body.menu-launch .mobile-menu-copy {
 }
 
 body.menu-launch .mobile-menu-copy strong {
-  color: var(--blue);
+  color: var(--action);
   font-size: 1.02rem;
   line-height: 1;
   font-weight: 950;
@@ -1011,7 +1013,7 @@ body.menu-launch.calculator-open .mobile-launcher {
   }
 
   .mobile-launcher {
-    width: min(430px, 100%);
+    width: min(360px, calc(100vw - 20px));
     min-height: calc(100dvh - 24px);
     display: grid;
     align-content: start;
@@ -1062,7 +1064,7 @@ body.menu-launch.calculator-open .mobile-launcher {
     padding: 10px;
     color: var(--ink);
     background: #fff;
-    border: 3px solid var(--blue);
+    border: 2px solid #d8d9cc;
     border-radius: 18px;
     box-shadow: 0 12px 26px rgba(0, 22, 48, 0.2);
     text-align: left;
@@ -1070,7 +1072,7 @@ body.menu-launch.calculator-open .mobile-launcher {
 
   .mobile-menu-bar:active,
   .mobile-menu-bar.active {
-    background: #eef7ff;
+    background: #edf3eb;
     transform: translateY(1px);
   }
 
@@ -1080,7 +1082,7 @@ body.menu-launch.calculator-open .mobile-launcher {
     width: 34px;
     height: 34px;
     color: #fff;
-    background: var(--blue);
+    background: var(--action);
     border-radius: 999px;
     font-family: "Consolas", "Courier New", monospace;
     font-size: 0.82rem;
@@ -1102,7 +1104,7 @@ body.menu-launch.calculator-open .mobile-launcher {
   }
 
   .mobile-menu-copy strong {
-    color: var(--blue);
+    color: var(--action);
     font-size: 1.02rem;
     line-height: 1;
     font-weight: 950;
@@ -1160,12 +1162,12 @@ body.menu-launch.calculator-open .mobile-launcher {
   }
 
   .calculator.expanded-mode {
-    width: 100vw;
-    height: 100dvh;
-    top: 0;
-    left: 0;
-    border-radius: 0;
-    transform: none;
+    width: min(360px, calc(100vw - 20px));
+    height: calc(100dvh - 20px);
+    top: 10px;
+    left: 50%;
+    border-radius: 36px;
+    transform: translateX(-50%);
   }
 
   .calc-banner {
