@@ -868,7 +868,7 @@ body.menu-launch .portal-header {
 
 body.menu-launch .mobile-launcher {
   width: min(360px, calc(100vw - 20px));
-  min-height: calc(100dvh - 24px);
+  height: min(720px, calc(100dvh - 24px));
   display: grid;
   align-content: start;
   gap: 14px;
@@ -878,7 +878,7 @@ body.menu-launch .mobile-launcher {
   border: 3px solid var(--blue);
   border-radius: 36px;
   box-shadow: 0 18px 44px rgba(4, 33, 61, 0.18);
-  overflow: hidden;
+  overflow-y: auto;
 }
 
 body.menu-launch .mobile-launcher-head {
@@ -1014,7 +1014,7 @@ body.menu-launch.calculator-open .mobile-launcher {
 
   .mobile-launcher {
     width: min(360px, calc(100vw - 20px));
-    min-height: calc(100dvh - 24px);
+    height: min(720px, calc(100dvh - 24px));
     display: grid;
     align-content: start;
     gap: 14px;
@@ -1024,7 +1024,7 @@ body.menu-launch.calculator-open .mobile-launcher {
     border: 3px solid var(--blue);
     border-radius: 36px;
     box-shadow: 0 18px 44px rgba(4, 33, 61, 0.18);
-    overflow: hidden;
+    overflow-y: auto;
   }
 
   .mobile-launcher-head {
