@@ -36,3 +36,8 @@ test('server errors cannot replace a working cached stylesheet',async()=>{
  await h.get('https://example.com/Job-It/styles.css');
  assert.equal(await (await cache.match('https://example.com/Job-It/styles.css')).text(),'working stylesheet');
 });
+test('full offline storage cannot block a successful online response',async()=>{
+ const h=harness(async()=>new Response('fresh stylesheet'));
+ h.caches.open=async()=>({async match(){},async put(){throw new Error('Storage quota exceeded');}});
+ assert.equal(await (await h.get('https://example.com/Job-It/styles.css')).text(),'fresh stylesheet');
+});

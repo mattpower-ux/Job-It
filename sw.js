@@ -66,7 +66,7 @@ self.addEventListener("fetch", (event) => {
       // Revalidate code and styles, preserving cached copies for offline use.
       const response = await fetch(event.request, { cache: documentOrCode ? "no-cache" : "default" });
       if (response.ok) {
-        await cache.put(event.request, response.clone());
+        await cache.put(event.request, response.clone()).catch(() => {});
         return response;
       }
       return cached || response;
