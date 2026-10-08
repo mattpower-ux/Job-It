@@ -1,9 +1,9 @@
-const CACHE_NAME = "job-it-v14";
+const CACHE_NAME = "job-it-v15";
 const ASSETS = [
   "./",
   "./index.html",
-  "./styles.css",
-  "./app.js",
+  "./styles.css?v=20261008-cache1",
+  "./app.js?v=20261008-cache1",
   "./manifest.webmanifest",
   "./assets/realistic/concrete.png",
   "./assets/realistic/roof.png",
@@ -39,29 +39,44 @@ const ASSETS = [
 ];
 
 self.addEventListener("install", (event) => {
-  event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS)));
-  self.skipWaiting();
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then((cache) => cache.addAll(ASSETS.map((asset) => new Request(new URL(asset, self.registration.scope), { cache: "reload" }))))
+      .then(() => self.skipWaiting())
+  );
 });
 
 self.addEventListener("activate", (event) => {
   event.waitUntil(
-    caches.keys().then((keys) =>
-      Promise.all(keys.filter((key) => key !== CACHE_NAME).map((key) => caches.delete(key)))
-    )
+    caches.keys()
+      .then((keys) => Promise.all(keys.filter((key) => key.startsWith("job-it-") && key !== CACHE_NAME).map((key) => caches.delete(key))))
+      .then(() => self.clients.claim())
   );
-  self.clients.claim();
 });
 
 self.addEventListener("fetch", (event) => {
-  if (event.request.method !== "GET") return;
-  event.respondWith(
-    caches.match(event.request).then((cached) => {
-      if (cached) return cached;
-      return fetch(event.request).then((response) => {
-        const copy = response.clone();
-        caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
+  if (event.request.method !== "GET" || !event.request.url.startsWith(self.registration.scope)) return;
+  const url = new URL(event.request.url);
+  const documentOrCode = event.request.mode === "navigate" || /\.(?:html|css|js|webmanifest)$/.test(url.pathname);
+  event.respondWith((async () => {
+    const cache = await caches.open(CACHE_NAME);
+    const cached = await cache.match(event.request);
+    if (!documentOrCode && cached) return cached;
+    try {
+      // Revalidate code and styles, preserving cached copies for offline use.
+      const response = await fetch(event.request, { cache: documentOrCode ? "no-cache" : "default" });
+      if (response.ok) {
+        await cache.put(event.request, response.clone());
         return response;
-      });
-    })
-  );
+      }
+      return cached || response;
+    } catch (error) {
+      if (cached) return cached;
+      if (event.request.mode === "navigate") {
+        const document = await cache.match(new URL("index.html", self.registration.scope).href);
+        if (document) return document;
+      }
+      throw error;
+    }
+  })());
 });
