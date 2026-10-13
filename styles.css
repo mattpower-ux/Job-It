@@ -1,21 +1,21 @@
 :root {
   --page: #f7f2e6;
-  --navy: #254946;
-  --blue: #2f756f;
-  --blue-dark: #254f4b;
-  --action: #2f514f;
-  --action-dark: #223d3b;
+  --navy: #071a2c;
+  --blue: #315b5a;
+  --blue-dark: #263d3e;
+  --action: #315b5a;
+  --action-dark: #263d3e;
   --teal: #0f9f95;
   --green: #238240;
   --gold: #f2af1d;
   --red: #df5b4f;
-  --paper: #ffffff;
+  --paper: #fffefa;
   --cream: #fff6e8;
-  --line: #d8d9cc;
-  --ink: #223a39;
-  --text: #415551;
-  --muted: #66756e;
-  --shadow: 0 18px 44px rgba(4, 33, 61, 0.18);
+  --line: #d3d9cf;
+  --ink: #263d3e;
+  --text: #465a56;
+  --muted: #68756f;
+  --shadow: 0 24px 72px rgba(11, 37, 65, 0.14);
   color-scheme: light;
 }
 
@@ -53,7 +53,7 @@ select {
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  background: linear-gradient(135deg, var(--navy), #164d66);
+  background: linear-gradient(135deg, var(--navy), #0b2d4c);
   border: 1px solid rgba(255, 255, 255, 0.8);
   border-radius: 36px 36px 0 0;
   box-shadow: var(--shadow);
@@ -127,7 +127,7 @@ h2 {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
-  background: #f7fbfe;
+  background: #f4f7f1;
   border: 1px solid rgba(255, 255, 255, 0.72);
   border-top: 0;
   border-radius: 0 0 36px 36px;
@@ -141,7 +141,7 @@ h2 {
   gap: 12px;
   background: var(--paper);
   border: 4px solid var(--blue);
-  border-radius: 22px;
+  border-radius: 20px;
   padding: 18px;
   box-shadow: 0 12px 28px rgba(8, 50, 85, 0.11);
   position: relative;
@@ -168,12 +168,12 @@ h2 {
   border: 0;
   background: var(--action);
   color: #fff;
-  border-radius: 12px;
-  min-height: 38px;
+  border-radius: 10px;
+  min-height: 40px;
   padding: 0 14px;
   font-weight: 900;
   cursor: pointer;
-  box-shadow: 0 10px 22px rgba(25, 118, 210, 0.24);
+  box-shadow: 0 10px 22px rgba(49, 91, 90, 0.22);
 }
 
 .mobile-toggle:hover {
@@ -277,7 +277,7 @@ select {
   width: 100%;
   min-height: 46px;
   color: var(--ink);
-  background: #fff;
+  background: var(--paper);
   border: 1px solid var(--line);
   border-radius: 12px;
   padding: 0 10px;
@@ -303,7 +303,7 @@ select:focus {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
-  background: #fff;
+  background: var(--paper);
   border: 1px solid var(--line);
   border-radius: 12px;
   overflow: hidden;
@@ -342,7 +342,7 @@ select:focus {
   gap: 10px;
   padding: 9px 12px;
   border: 1px solid var(--line);
-  background: #fff;
+  background: var(--paper);
   border-radius: 16px;
 }
 
@@ -390,7 +390,7 @@ select:focus {
   min-width: 0;
   padding: 8px;
   color: var(--ink);
-  background: #fff;
+  background: var(--paper);
   border: 2px solid var(--line);
   border-radius: 16px;
   text-align: left;
@@ -612,15 +612,15 @@ select:focus {
   z-index: 30;
   top: 50%;
   left: 50%;
-  width: min(360px, calc(100vw - 24px));
-  height: min(720px, calc(100dvh - 24px));
+  width: min(390px, calc(100vw - 24px));
+  height: min(664px, calc(100dvh - 24px));
   margin: 0;
-  border: 3px solid var(--blue);
-  border-radius: 36px;
+  border: 4px solid var(--blue);
+  border-radius: 28px;
   overflow-y: auto;
   padding: 18px;
   cursor: default;
-  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.32);
+  box-shadow: 0 24px 72px rgba(11, 37, 65, 0.18);
   transform: translate(-50%, -50%);
 }
 
@@ -645,7 +645,7 @@ select:focus {
   z-index: 4;
   margin: -18px -18px 0;
   padding: 14px 18px 12px;
-  background: #fff;
+  background: var(--paper);
   border-bottom: 1px solid var(--line);
 }
 
@@ -708,7 +708,7 @@ select:focus {
   padding: 12px;
   border: 1px solid var(--line);
   border-radius: 18px;
-  background: #f7fbfe;
+  background: #f4f7f1;
 }
 
 .calculator.expanded-mode.specialty-mode .specialty-grid,
@@ -736,12 +736,12 @@ select:focus {
 .shortcut-button {
   min-height: 48px;
   border: 0;
-  border-radius: 14px;
+  border-radius: 10px;
   background: var(--action);
   color: #fff;
   font-weight: 950;
   letter-spacing: 0.02em;
-  box-shadow: 0 12px 24px rgba(25, 118, 210, 0.24);
+  box-shadow: 0 12px 24px rgba(49, 91, 90, 0.22);
 }
 
 .shortcut-button:hover {
@@ -764,7 +764,7 @@ select:focus {
   gap: 12px;
   padding: 18px;
   border-radius: 20px;
-  background: #fff;
+  background: var(--paper);
   border: 2px solid var(--blue);
   box-shadow: 0 22px 64px rgba(0, 22, 48, 0.34);
 }
@@ -805,7 +805,7 @@ select:focus {
 .install-cancel {
   border: 1px solid var(--line);
   color: var(--ink);
-  background: #fff;
+  background: var(--paper);
 }
 
 .calculator.expanded-mode .mobile-toggle {
@@ -841,12 +841,12 @@ body.shortcut-launch .calculator.expanded-mode {
   position: relative;
   top: auto;
   left: auto;
-  width: min(360px, calc(100vw - 20px));
-  min-height: calc(100vh - 20px);
+  width: min(390px, calc(100vw - 20px));
+  min-height: min(664px, calc(100vh - 20px));
   height: auto;
   margin: 10px auto;
-  border: 3px solid var(--blue);
-  border-radius: 36px;
+  border: 4px solid var(--blue);
+  border-radius: 28px;
   transform: none;
 }
 
@@ -872,17 +872,17 @@ body.menu-launch .portal-header {
 }
 
 body.menu-launch .mobile-launcher {
-  width: min(360px, calc(100vw - 20px));
-  height: min(720px, calc(100dvh - 24px));
+  width: min(390px, calc(100vw - 20px));
+  height: min(664px, calc(100dvh - 24px));
   display: grid;
   align-content: start;
   gap: 10px;
   margin: 12px auto;
   padding: 12px;
-  background: var(--page);
-  border: 3px solid var(--blue);
-  border-radius: 36px;
-  box-shadow: 0 18px 44px rgba(4, 33, 61, 0.18);
+  background: var(--paper);
+  border: 4px solid var(--blue);
+  border-radius: 28px;
+  box-shadow: var(--shadow);
   overflow: hidden;
 }
 
@@ -891,8 +891,8 @@ body.menu-launch .mobile-launcher-head {
   gap: 3px;
   padding: 13px 16px 14px;
   border: 1px solid rgba(255, 255, 255, 0.34);
-  border-radius: 24px;
-  background: linear-gradient(135deg, var(--navy), #164d66);
+  border-radius: 22px;
+  background: linear-gradient(135deg, var(--navy), #0b2d4c);
   box-shadow: 0 14px 34px rgba(31, 54, 50, 0.28);
 }
 
@@ -922,7 +922,7 @@ body.menu-launch .mobile-menu-bar {
   gap: 8px;
   padding: 7px;
   color: var(--ink);
-  background: #fff;
+  background: var(--paper);
   border: 2px solid var(--line);
   border-radius: 16px;
   box-shadow: 0 12px 26px rgba(54, 66, 52, 0.16);
@@ -1014,7 +1014,7 @@ body.menu-launch .mobile-scrim {
 
 @media (max-width: 760px) {
   body {
-    background: #fff;
+    background: var(--page);
   }
 
   .portal-header {
@@ -1022,17 +1022,17 @@ body.menu-launch .mobile-scrim {
   }
 
   .mobile-launcher {
-    width: min(360px, calc(100vw - 20px));
-    height: min(720px, calc(100dvh - 24px));
+    width: min(390px, calc(100vw - 20px));
+    height: min(664px, calc(100dvh - 24px));
     display: grid;
     align-content: start;
     gap: 10px;
     margin: 12px auto;
     padding: 12px;
-    background: var(--page);
-    border: 3px solid var(--blue);
-    border-radius: 36px;
-    box-shadow: 0 18px 44px rgba(4, 33, 61, 0.18);
+    background: var(--paper);
+    border: 4px solid var(--blue);
+    border-radius: 28px;
+    box-shadow: var(--shadow);
     overflow: hidden;
   }
 
@@ -1041,8 +1041,8 @@ body.menu-launch .mobile-scrim {
     gap: 3px;
     padding: 13px 16px 14px;
     border: 1px solid rgba(255, 255, 255, 0.34);
-    border-radius: 24px;
-    background: linear-gradient(135deg, var(--navy), #164d66);
+    border-radius: 22px;
+    background: linear-gradient(135deg, var(--navy), #0b2d4c);
     box-shadow: 0 14px 34px rgba(31, 54, 50, 0.28);
   }
 
@@ -1072,7 +1072,7 @@ body.menu-launch .mobile-scrim {
     gap: 8px;
     padding: 7px;
     color: var(--ink);
-    background: #fff;
+    background: var(--paper);
     border: 2px solid var(--line);
     border-radius: 16px;
     box-shadow: 0 12px 26px rgba(54, 66, 52, 0.16);
@@ -1171,11 +1171,11 @@ body.menu-launch .mobile-scrim {
   }
 
   .calculator.expanded-mode {
-    width: min(360px, calc(100vw - 20px));
+    width: min(390px, calc(100vw - 20px));
     height: calc(100dvh - 20px);
     top: 10px;
     left: 50%;
-    border-radius: 36px;
+    border-radius: 28px;
     transform: translateX(-50%);
   }
 
